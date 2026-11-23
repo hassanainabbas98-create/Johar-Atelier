@@ -5,20 +5,21 @@
 
 # Stage 1: Build & Publish
 FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
-WORKDIR /src
+WORKDIR /app
 
-# Copy project files and restore dependencies
-COPY ["src/Johar.Core/Johar.Core.csproj", "src/Johar.Core/"]
+# Copy project files preserving directory structure for caching
 COPY ["src/Johar.Data/Johar.Data.csproj", "src/Johar.Data/"]
 COPY ["src/Johar.Services/Johar.Services.csproj", "src/Johar.Services/"]
 COPY ["src/Johar.Api/Johar.Api.csproj", "src/Johar.Api/"]
 
+# Restore dependencies
 RUN dotnet restore "src/Johar.Api/Johar.Api.csproj"
 
-# Copy entire source tree
+# Copy the entire source tree
 COPY src/ src/
 
-WORKDIR "/src/src/Johar.Api"
+# Publish Release build
+WORKDIR "/app/src/Johar.Api"
 RUN dotnet publish "Johar.Api.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
 # Stage 2: Production Runtime
@@ -32,7 +33,7 @@ ENV ASPNETCORE_ENVIRONMENT=Production
 
 COPY --from=build /app/publish .
 
-# Persist uploaded artworks and database volume
+# Persist uploaded artworks volume
 VOLUME /app/wwwroot/uploads
 
 ENTRYPOINT ["dotnet", "Johar.Api.dll"]
