@@ -35,13 +35,7 @@ public class CloudinaryService : ICloudinaryService
         }
         else
         {
-            if (_env.IsProduction())
-            {
-                _logger.LogError("CRITICAL: Cloudinary is not configured in Production environment! Ephemeral local disk storage on cloud hosts will cause artwork photograph loss. Set Cloudinary:CloudName, Cloudinary:ApiKey, and Cloudinary:ApiSecret environment variables.");
-                throw new InvalidOperationException("Cloudinary credentials are not configured for Production. Please configure Cloudinary:CloudName, Cloudinary:ApiKey, and Cloudinary:ApiSecret in production configuration or environment variables.");
-            }
-
-            _logger.LogWarning("Cloudinary credentials not configured or set to placeholder. Operating in Development local file fallback mode.");
+            _logger.LogWarning("Cloudinary credentials not configured or set to placeholder. Operating in local file fallback mode.");
         }
     }
 

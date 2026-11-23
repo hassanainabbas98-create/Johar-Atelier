@@ -4,11 +4,11 @@
   "rewrites": [
     {
       "source": "/uploads/(.*)",
-      "destination": "https://YOUR_BACKEND_URL.onrender.com/uploads/$1"
+      "destination": "https://johar-xdgx.onrender.com/uploads/$1"
     },
     {
       "source": "/api/(.*)",
-      "destination": "https://YOUR_BACKEND_URL.onrender.com/api/$1"
+      "destination": "https://johar-xdgx.onrender.com/api/$1"
     },
     {
       "source": "/(.*)",
