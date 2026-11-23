@@ -1,0 +1,282 @@
+/* ==========================================================================
+   Atelier Guestbook Modal (Archival Collector Register)
+   ========================================================================== */
+
+.modalBackdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(2, 4, 8, 0.88);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.modalCard {
+  width: 100%;
+  max-width: 680px;
+  max-height: 90vh;
+  background: #080d15;
+  border: 1px solid rgba(213, 133, 31, 0.38);
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.85), 0 0 32px rgba(213, 133, 31, 0.15);
+}
+
+.modalHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 28px;
+  border-bottom: 1px solid rgba(90, 62, 43, 0.45);
+  background: rgba(4, 7, 12, 0.95);
+}
+
+.headerTitleGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.headerSubtitle {
+  font-family: var(--font-mono);
+  font-size: 8.5px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--color-accent-sage);
+}
+
+.headerTitle {
+  font-family: var(--font-cinzel), serif;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  color: #ffffff;
+  margin: 0;
+}
+
+.closeBtn {
+  background: transparent;
+  border: 1px solid rgba(213, 133, 31, 0.3);
+  color: #f4d9a0;
+  width: 36px;
+  height: 36px;
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.closeBtn:hover {
+  background: rgba(213, 133, 31, 0.2);
+  color: #ffffff;
+  border-color: var(--color-eclipse-gold);
+}
+
+.modalContent {
+  padding: 24px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  overflow-y: auto;
+}
+
+/* Guestbook Form */
+.guestbookForm {
+  background: rgba(4, 7, 12, 0.85);
+  border: 1px solid rgba(213, 133, 31, 0.25);
+  padding: 20px;
+  border-radius: 2px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+@media (max-width: 540px) {
+  .formRow {
+    grid-template-columns: 1fr;
+  }
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.inputLabel {
+  font-family: var(--font-sans);
+  font-size: 9px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: rgba(244, 217, 160, 0.7);
+}
+
+.inputField {
+  background: rgba(2, 4, 8, 0.9);
+  border: 1px solid rgba(213, 133, 31, 0.3);
+  color: #ffffff;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  padding: 10px 14px;
+  border-radius: 2px;
+  outline: none;
+  transition: border-color var(--transition-fast);
+}
+
+.inputField:focus {
+  border-color: var(--color-eclipse-gold);
+}
+
+.textareaField {
+  background: rgba(2, 4, 8, 0.9);
+  border: 1px solid rgba(213, 133, 31, 0.3);
+  color: #ffffff;
+  font-family: var(--font-serif);
+  font-size: 13px;
+  font-style: italic;
+  padding: 12px 14px;
+  border-radius: 2px;
+  outline: none;
+  resize: vertical;
+  min-height: 70px;
+  transition: border-color var(--transition-fast);
+}
+
+.textareaField:focus {
+  border-color: var(--color-eclipse-gold);
+}
+
+.submitBtn {
+  align-self: flex-end;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(110deg, #5a3e2b 0%, #d5851f 100%);
+  border: 1px solid var(--color-eclipse-gold);
+  color: #ffffff;
+  font-family: var(--font-cinzel), serif;
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 10px 18px;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.submitBtn:hover {
+  background: linear-gradient(110deg, #6c4b34 0%, #e5932a 100%);
+  box-shadow: 0 0 16px rgba(213, 133, 31, 0.45);
+  transform: translateY(-1px);
+}
+
+/* Past Impressions List */
+.impressionsSection {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sectionHeading {
+  font-family: var(--font-cinzel), serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #f4d9a0;
+  margin: 0;
+}
+
+.impressionsList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 240px;
+  overflow-y: auto;
+}
+
+.impressionCard {
+  background: rgba(4, 7, 12, 0.7);
+  border-left: 2px solid var(--color-eclipse-gold);
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.impressionQuote {
+  font-family: var(--font-serif);
+  font-size: 12.5px;
+  font-style: italic;
+  color: #f5f2eb;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.impressionAuthor {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--color-accent-sage);
+}
+
+@media (max-width: 640px) {
+  .modalBackdrop {
+    padding: 10px;
+  }
+
+  .modalCard {
+    max-height: 94vh;
+  }
+
+  .modalHeader {
+    padding: 14px 16px;
+  }
+
+  .headerTitle {
+    font-size: 13px;
+    letter-spacing: 1px;
+    word-break: break-word;
+  }
+
+  .headerSubtitle {
+    font-size: 7.5px;
+    letter-spacing: 1.5px;
+  }
+
+  .modalContent {
+    padding: 16px;
+    gap: 16px;
+  }
+
+  .guestbookForm {
+    padding: 14px;
+    gap: 12px;
+  }
+
+  .impressionsList {
+    max-height: 200px;
+  }
+}

@@ -1,0 +1,12 @@
+.layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--color-eclipse-bg);
+  color: var(--color-eclipse-ink);
+}
+
+.main {
+  flex-grow: 1;
+  padding-top: 88px; /* Fixed header offset */
+}

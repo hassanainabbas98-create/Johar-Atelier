@@ -1,0 +1,441 @@
+/* ==========================================================================
+   View On Your Wall (Interior Collector Simulator & AR Preview)
+   Archival Sanctuary Atelier Design System
+   ========================================================================== */
+
+.modalBackdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(2, 4, 8, 0.88);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.modalCard {
+  width: 100%;
+  max-width: 1080px;
+  max-height: 92vh;
+  background: #080d15;
+  border: 1px solid rgba(213, 133, 31, 0.38);
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.85), 0 0 32px rgba(213, 133, 31, 0.12);
+}
+
+/* Modal Header */
+.modalHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 28px;
+  border-bottom: 1px solid rgba(90, 62, 43, 0.45);
+  background: rgba(4, 7, 12, 0.95);
+}
+
+.headerTitleGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.headerSubtitle {
+  font-family: var(--font-mono);
+  font-size: 8.5px;
+  letter-spacing: 2.2px;
+  text-transform: uppercase;
+  color: var(--color-accent-sage);
+}
+
+.headerTitle {
+  font-family: var(--font-cinzel), serif;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  color: #ffffff;
+  margin: 0;
+}
+
+.closeBtn {
+  background: transparent;
+  border: 1px solid rgba(213, 133, 31, 0.3);
+  color: #f4d9a0;
+  width: 36px;
+  height: 36px;
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.closeBtn:hover {
+  background: rgba(213, 133, 31, 0.2);
+  color: #ffffff;
+  border-color: var(--color-eclipse-gold);
+}
+
+/* Modal Body */
+.modalBody {
+  display: flex;
+  flex: 1;
+  min-height: 480px;
+  overflow: hidden;
+}
+
+@media (max-width: 860px) {
+  .modalBody {
+    flex-direction: column;
+    overflow-y: auto;
+  }
+}
+
+/* Visualizer Stage */
+.stageContainer {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  min-height: 420px;
+  transition: background-color 0.4s ease;
+}
+
+/* Interior Wall Backgrounds */
+.wallModern {
+  background: linear-gradient(180deg, #1e242d 0%, #151920 70%, #0d0f14 100%);
+}
+
+.wallFrenchSalon {
+  background: linear-gradient(180deg, #2b2520 0%, #1e1915 70%, #120e0b 100%);
+}
+
+.wallMinimalist {
+  background: linear-gradient(180deg, #e5e3de 0%, #d8d5ce 70%, #c4c1b9 100%);
+}
+
+.wallWalnutStudy {
+  background: linear-gradient(180deg, #1b140f 0%, #140d09 70%, #0a0604 100%);
+}
+
+/* Simulated Floor Strip */
+.stageFloor {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 90px;
+  background: linear-gradient(180deg, rgba(16, 12, 9, 0.95) 0%, rgba(8, 6, 4, 1) 100%);
+  border-top: 4px solid #3a281c;
+  box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.8);
+}
+
+/* Ceiling Ambient Light Cone */
+.stageLightCone {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 480px;
+  height: 380px;
+  background: radial-gradient(ellipse at top, rgba(255, 240, 215, 0.28) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* Human Scale Silhouette Reference (1.75m eye level) */
+.humanScale {
+  position: absolute;
+  bottom: 90px;
+  left: 10%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+.humanSvg {
+  width: 52px;
+  height: 140px;
+  fill: #f4d9a0;
+}
+
+.humanLabel {
+  font-family: var(--font-mono);
+  font-size: 7.5px;
+  letter-spacing: 1px;
+  color: #f4d9a0;
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+
+/* Mounted Framed Artwork on Wall */
+.mountedFrame {
+  position: relative;
+  z-index: 10;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  box-shadow: 0 24px 52px rgba(0, 0, 0, 0.75), 0 4px 12px rgba(0, 0, 0, 0.5);
+  transition: all 0.35s ease;
+  transform-origin: center;
+}
+
+/* Frame Styles in Simulator */
+.frameGilded {
+  background: linear-gradient(135deg, #d5851f 0%, #875514 50%, #f4d9a0 75%, #a86716 100%);
+  border: 1px solid #ffe1a6;
+}
+
+.frameWalnut {
+  background: linear-gradient(135deg, #3a281c 0%, #1e140d 50%, #4a3424 100%);
+  border: 1px solid #5a3e2b;
+}
+
+.frameOak {
+  background: linear-gradient(135deg, #d8b589 0%, #b89569 50%, #fae2c0 100%);
+  border: 1px solid #ebd2b2;
+}
+
+.frameObsidian {
+  background: linear-gradient(135deg, #181d25 0%, #080a0e 100%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.innerMatboard {
+  background: #080a0f;
+  padding: 12px;
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.8);
+}
+
+.artworkImg {
+  max-width: min(80vw, 440px);
+  max-height: min(35vh, 290px);
+  width: auto;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6);
+}
+
+/* Sidebar Controls */
+.controlsSidebar {
+  width: 320px;
+  background: rgba(4, 7, 12, 0.98);
+  border-left: 1px solid rgba(90, 62, 43, 0.4);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  overflow-y: auto;
+}
+
+@media (max-width: 860px) {
+  .controlsSidebar {
+    width: 100%;
+    border-left: none;
+    border-top: 1px solid rgba(90, 62, 43, 0.4);
+  }
+}
+
+.sectionGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sectionTitle {
+  font-family: var(--font-cinzel), serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #f4d9a0;
+  margin: 0;
+}
+
+.optionsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+
+.optionBtn {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(213, 133, 31, 0.25);
+  color: rgba(244, 217, 160, 0.75);
+  font-family: var(--font-sans);
+  font-size: 9px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 10px 12px;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  text-align: left;
+}
+
+.optionBtn:hover {
+  background: rgba(213, 133, 31, 0.15);
+  color: #ffffff;
+  border-color: var(--color-eclipse-gold);
+}
+
+.optionBtnActive {
+  background: rgba(90, 62, 43, 0.85);
+  border-color: var(--color-eclipse-gold);
+  color: #ffffff;
+  box-shadow: 0 0 12px rgba(213, 133, 31, 0.3);
+}
+
+/* Dimensions Info Box */
+.dimensionsBox {
+  background: rgba(6, 10, 16, 0.8);
+  border: 1px solid rgba(213, 133, 31, 0.2);
+  padding: 14px;
+  border-radius: 2px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.dimRow {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-sans);
+  font-size: 10px;
+  color: rgba(244, 217, 160, 0.75);
+}
+
+.dimValue {
+  color: #ffffff;
+  font-weight: 600;
+  font-family: var(--font-mono);
+}
+
+/* AR Mobile Action Button */
+.arActionBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: linear-gradient(110deg, #5a3e2b 0%, #d5851f 100%);
+  border: 1px solid var(--color-eclipse-gold);
+  color: #ffffff;
+  font-family: var(--font-cinzel), serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 14px 20px;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  box-shadow: 0 4px 20px rgba(213, 133, 31, 0.35);
+  margin-top: auto;
+}
+
+.arActionBtn:hover {
+  background: linear-gradient(110deg, #6c4b34 0%, #e5932a 100%);
+  box-shadow: 0 6px 28px rgba(213, 133, 31, 0.55);
+  transform: translateY(-1px);
+}
+
+@media (max-width: 640px) {
+  .modalBackdrop {
+    padding: 8px;
+  }
+
+  .modalCard {
+    max-height: 96vh;
+    border-radius: 2px;
+  }
+
+  .modalHeader {
+    padding: 12px 14px;
+  }
+
+  .headerTitle {
+    font-size: 13px;
+    letter-spacing: 0.8px;
+    word-break: break-word;
+  }
+
+  .headerSubtitle {
+    font-size: 7.5px;
+    letter-spacing: 1.5px;
+  }
+
+  .stageContainer {
+    min-height: 220px;
+    max-height: 38vh;
+    padding: 8px;
+  }
+
+  .stageFloor {
+    height: 60px;
+  }
+
+  .humanScale {
+    bottom: 60px;
+    left: 4%;
+  }
+
+  .humanSvg {
+    width: 32px;
+    height: 90px;
+  }
+
+  .humanLabel {
+    font-size: 6.5px;
+  }
+
+  .mountedFrame {
+    padding: 10px;
+    max-width: 90%;
+  }
+
+  .innerMatboard {
+    padding: 8px;
+  }
+
+  .artworkImg {
+    max-width: min(72vw, 280px);
+    max-height: min(26vh, 180px);
+  }
+
+  .controlsSidebar {
+    padding: 14px;
+    gap: 16px;
+  }
+
+  .optionsGrid {
+    gap: 6px;
+  }
+
+  .optionBtn {
+    padding: 8px 10px;
+    font-size: 8px;
+  }
+
+  .arActionBtn {
+    padding: 11px 16px;
+    font-size: 9px;
+  }
+}

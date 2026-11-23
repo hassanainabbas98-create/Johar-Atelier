@@ -1,0 +1,407 @@
+/* Eclipse Cosmic Architecture — Artwork Detail Page */
+.page {
+  padding: 40px 0 var(--space-24) 0;
+  background-color: var(--color-eclipse-bg);
+  color: var(--color-eclipse-ink);
+  min-height: 100vh;
+}
+
+.inner {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 var(--pad-eclipse);
+}
+
+.breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(156, 169, 178, 0.6);
+  margin-bottom: 36px;
+}
+
+.breadcrumbLink {
+  color: var(--color-eclipse-muted);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.breadcrumbLink:hover {
+  color: var(--color-eclipse-gold);
+}
+
+.breadcrumbCurrent {
+  color: var(--color-eclipse-gold);
+  font-weight: 600;
+}
+
+/* 60/40 Asymmetric Layout */
+.layout {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: clamp(36px, 5vw, 72px);
+  align-items: flex-start;
+}
+
+/* Left Column: Artwork Presentation */
+.visualColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.matboard {
+  position: relative;
+  background: radial-gradient(ellipse at center, rgba(90, 62, 43, 0.28) 0%, #060a10 80%);
+  border: 1px solid rgba(90, 62, 43, 0.4);
+  padding: clamp(24px, 4vw, 48px);
+  border-radius: 2px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  min-height: 400px;
+}
+
+.mainImageContainer {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 100%;
+}
+
+.watermarkBadge {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  font-family: var(--font-cinzel), serif;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: rgba(244, 217, 160, 0.9);
+  background: rgba(6, 10, 16, 0.72);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid rgba(213, 133, 31, 0.35);
+  padding: 3px 9px;
+  border-radius: 2px;
+  pointer-events: none;
+  user-select: none;
+  z-index: 5;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+  white-space: nowrap;
+}
+
+.mainImage {
+  width: 100%;
+  max-height: 680px;
+  object-fit: contain; /* Fine art guardrail: Always uncropped */
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.8);
+  cursor: zoom-in;
+  transition: transform var(--transition-standard);
+}
+
+.mainImage:hover {
+  transform: scale(1.015);
+}
+
+.zoomTrigger {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 8px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  background-color: rgba(31, 21, 14, 0.9);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: var(--color-eclipse-gold);
+  border: 1px solid rgba(213, 133, 31, 0.4);
+  padding: 8px 16px;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.zoomTrigger:hover {
+  background-color: rgba(213, 133, 31, 0.2);
+  color: #FFFFFF;
+}
+
+/* Secondary Thumbnails */
+.thumbnailsTray {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+}
+
+.thumbnailBtn {
+  width: 84px;
+  height: 84px;
+  background-color: #080d15;
+  border: 1px solid rgba(224, 232, 236, 0.14);
+  padding: 4px;
+  cursor: pointer;
+  transition: border-color var(--transition-fast), transform var(--transition-fast);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.thumbnailBtn:hover {
+  border-color: var(--color-eclipse-gold);
+}
+
+.activeThumbnail {
+  border: 2px solid var(--color-eclipse-gold);
+  box-shadow: 0 0 10px rgba(217, 175, 117, 0.3);
+}
+
+.thumbnailImg {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Right Column: Curatorial Dossier */
+.dossierColumn {
+  position: sticky;
+  top: 110px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.mediumBadge {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--color-accent-sage);
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: clamp(34px, 4.2vw, 54px);
+  font-weight: 400;
+  color: var(--color-eclipse-ink);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  margin: 6px 0 0;
+}
+
+.statusRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.statusDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  box-shadow: 0 0 8px currentColor;
+}
+
+.specsMatrix {
+  border-top: 1px solid rgba(90, 62, 43, 0.4);
+  border-bottom: 1px solid rgba(90, 62, 43, 0.4);
+  padding: 24px 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.specItem {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.specLabel {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--color-accent-sage);
+}
+
+.specValue {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  color: var(--color-eclipse-ink);
+  font-weight: 500;
+}
+
+.storySection {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.storyTitle {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--color-eclipse-gold);
+}
+
+.storyBody {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  color: var(--color-eclipse-muted);
+  line-height: 1.85;
+  white-space: pre-line;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 8px;
+}
+
+.inquirePrimaryBtn {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--color-eclipse-ink);
+  background: linear-gradient(110deg, rgba(90, 62, 43, 0.45) 0%, rgba(6, 10, 16, 0.7) 100%);
+  border: 1px solid rgba(213, 133, 31, 0.4);
+  padding: 18px 28px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  text-align: center;
+  position: relative;
+  isolation: isolate;
+}
+
+.inquirePrimaryBtn:before,
+.inquirePrimaryBtn:after {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  width: 7px;
+  height: 7px;
+  border-top: 1px solid var(--color-eclipse-gold);
+  border-left: 1px solid var(--color-eclipse-gold);
+}
+
+.inquirePrimaryBtn:after {
+  inset: auto -1px -1px auto;
+  transform: rotate(180deg);
+}
+
+.inquirePrimaryBtn:hover {
+  background: linear-gradient(110deg, rgba(90, 62, 43, 0.75) 0%, rgba(213, 133, 31, 0.2) 100%);
+  border-color: var(--color-eclipse-gold);
+  box-shadow: 0 0 20px rgba(213, 133, 31, 0.25);
+  transform: translateY(-2px);
+}
+
+.inquireNote {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: rgba(156, 169, 178, 0.6);
+  line-height: 1.6;
+  text-align: center;
+}
+
+@media (max-width: 1024px) {
+  .layout {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .dossierColumn {
+    position: static;
+  }
+}
+
+@media (max-width: 640px) {
+  .page {
+    padding: 20px 0 50px 0;
+  }
+
+  .breadcrumbs {
+    margin-bottom: 20px;
+    font-size: 8px;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .layout {
+    gap: 28px;
+  }
+
+  .matboard {
+    min-height: 240px;
+    padding: 12px;
+  }
+
+  .mainImage {
+    max-height: 380px;
+  }
+
+  .watermarkBadge {
+    font-size: 7.5px;
+    letter-spacing: 1px;
+    padding: 2.5px 6px;
+    bottom: 8px;
+    right: 8px;
+  }
+
+  .zoomTrigger {
+    bottom: 10px;
+    right: 10px;
+    padding: 6px 10px;
+    font-size: 7.5px;
+  }
+
+  .thumbnailBtn {
+    width: 64px;
+    height: 64px;
+  }
+
+  .title {
+    font-size: clamp(24px, 6.8vw, 34px);
+  }
+
+  .specsMatrix {
+    grid-template-columns: 1fr;
+    gap: 14px;
+    padding: 18px 0;
+  }
+
+  .inquireButton {
+    width: 100%;
+    justify-content: center;
+    padding: 14px 18px;
+  }
+}

@@ -1,0 +1,388 @@
+/* Eclipse Cosmic Architecture — Contact Page */
+.page {
+  padding: 60px 0 var(--space-24) 0;
+  background-color: var(--color-eclipse-bg);
+  color: var(--color-eclipse-ink);
+  min-height: 100vh;
+}
+
+.inner {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 var(--pad-eclipse);
+}
+
+.header {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 56px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-sans);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 2.8px;
+  text-transform: uppercase;
+  color: var(--color-eclipse-gold);
+}
+
+.hairline {
+  display: inline-block;
+  width: 24px;
+  height: 1px;
+  background: var(--color-eclipse-gold);
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: clamp(38px, 5.5vw, 76px);
+  font-weight: 400;
+  color: var(--color-eclipse-ink);
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+  margin: 0;
+}
+
+.subtitle {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  color: var(--color-eclipse-muted);
+  line-height: 1.8;
+  margin: 0;
+}
+
+/* Two-Column Grid: Contact Info + Form */
+.grid {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: clamp(36px, 5vw, 72px);
+  align-items: flex-start;
+}
+
+.infoColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.infoCard {
+  background: linear-gradient(135deg, rgba(90, 62, 43, 0.22) 0%, rgba(10, 16, 25, 0.8) 100%);
+  border: 1px solid rgba(90, 62, 43, 0.4);
+  padding: 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.5);
+}
+
+.infoTitle {
+  font-family: var(--font-display);
+  font-size: 26px;
+  color: var(--color-eclipse-ink);
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.infoItem {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.infoLabel {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--color-accent-sage);
+}
+
+.infoValue {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  color: var(--color-eclipse-ink);
+  line-height: 1.6;
+}
+
+.infoLink {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  color: var(--color-eclipse-ink);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  transition: color var(--transition-fast);
+}
+
+.infoLink:hover {
+  color: var(--color-eclipse-gold);
+}
+
+.appointmentsNotice {
+  background: rgba(31, 21, 14, 0.7);
+  border: 1px solid rgba(90, 62, 43, 0.4);
+  border-left: 2px solid var(--color-accent-sage);
+  padding: 24px;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  color: var(--color-eclipse-muted);
+  line-height: 1.7;
+}
+
+/* Form Card */
+.formCard {
+  background: radial-gradient(ellipse at 80% 30%, rgba(90, 62, 43, 0.45) 0%, rgba(8, 14, 22, 0.96) 70%);
+  border: 1px solid rgba(213, 133, 31, 0.35);
+  padding: clamp(36px, 5vw, 56px);
+  position: relative;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.85);
+  isolation: isolate;
+}
+
+.formCard:before,
+.formCard:after {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  width: 14px;
+  height: 14px;
+  border-top: 2px solid var(--color-eclipse-gold);
+  border-left: 2px solid var(--color-eclipse-gold);
+}
+
+.formCard:after {
+  inset: auto -1px -1px auto;
+  transform: rotate(180deg);
+}
+
+.formHeader {
+  margin-bottom: 28px;
+  border-bottom: 1px solid rgba(224, 232, 236, 0.12);
+  padding-bottom: 16px;
+}
+
+.formTitle {
+  font-family: var(--font-display);
+  font-size: clamp(26px, 3.2vw, 36px);
+  color: var(--color-eclipse-ink);
+  letter-spacing: -0.02em;
+  margin: 0 0 6px;
+}
+
+.formDesc {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  color: var(--color-eclipse-muted);
+  margin: 0;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.twoCol {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.label {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--color-accent-sage);
+}
+
+.input, .textarea {
+  width: 100%;
+  padding: 14px 16px;
+  background-color: rgba(31, 21, 14, 0.85);
+  border: 1px solid rgba(213, 133, 31, 0.22);
+  color: var(--color-eclipse-ink);
+  border-radius: 2px;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  box-sizing: border-box;
+}
+
+.input:focus, .textarea:focus {
+  outline: none;
+  border-color: var(--color-eclipse-gold);
+  box-shadow: 0 0 12px rgba(213, 133, 31, 0.35);
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 140px;
+  line-height: 1.7;
+}
+
+.honeypot {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.errorMessage {
+  padding: 14px 18px;
+  background-color: rgba(158, 42, 43, 0.2);
+  border-left: 3px solid var(--color-error);
+  color: #fca5a5;
+  font-size: 13px;
+  font-family: var(--font-sans);
+}
+
+.submitBtn {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--color-eclipse-ink);
+  background: linear-gradient(110deg, rgba(90, 62, 43, 0.55) 0%, rgba(6, 10, 16, 0.7) 100%);
+  border: 1px solid rgba(213, 133, 31, 0.45);
+  padding: 18px 36px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  position: relative;
+  isolation: isolate;
+  align-self: flex-start;
+}
+
+.submitBtn:before,
+.submitBtn:after {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  width: 7px;
+  height: 7px;
+  border-top: 1px solid var(--color-eclipse-gold);
+  border-left: 1px solid var(--color-eclipse-gold);
+}
+
+.submitBtn:after {
+  inset: auto -1px -1px auto;
+  transform: rotate(180deg);
+}
+
+.submitBtn:hover:not(:disabled) {
+  background: linear-gradient(110deg, rgba(90, 62, 43, 0.85) 0%, rgba(213, 133, 31, 0.25) 100%);
+  border-color: var(--color-eclipse-gold);
+  box-shadow: 0 0 20px rgba(213, 133, 31, 0.3);
+  transform: translateY(-2px);
+}
+
+.submitBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Success View */
+.successView {
+  padding: 48px 0;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.successIconBadge {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background-color: rgba(217, 175, 117, 0.15);
+  border: 1px solid var(--color-eclipse-gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-eclipse-gold);
+  box-shadow: 0 0 16px rgba(217, 175, 117, 0.35);
+}
+
+.successTitle {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 3.4vw, 42px);
+  color: var(--color-eclipse-ink);
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.successText {
+  color: var(--color-eclipse-muted);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  max-width: 480px;
+  line-height: 1.75;
+  margin: 0;
+}
+
+.refBadge {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 8px 18px;
+  background-color: rgba(6, 10, 16, 0.8);
+  border: 1px solid rgba(217, 175, 117, 0.4);
+  color: var(--color-eclipse-gold);
+  margin-top: 8px;
+}
+
+@media (max-width: 900px) {
+  .page {
+    padding: 30px 0 50px 0;
+  }
+
+  .header {
+    margin-bottom: 32px;
+  }
+
+  .title {
+    font-size: clamp(28px, 8vw, 42px);
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .formCard {
+    padding: 24px 18px;
+  }
+
+  .twoCol {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .submitBtn {
+    width: 100%;
+    justify-content: center;
+    padding: 14px 20px;
+  }
+}

@@ -1,0 +1,136 @@
+/* ==========================================================================
+   LIQUID METAL SHADER & BUTTON COMPONENT STYLING
+   Precision utility & animation support for LiquidMetal & LiquidMetalButton
+   ========================================================================== */
+
+.liquid-metal-btn {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  padding: 0;
+  outline: none;
+  text-decoration: none;
+  transition: transform 0.15s cubic-bezier(0.2, 0, 0, 1);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.liquid-metal-btn:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.liquid-metal-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.liquid-metal-outer {
+  position: relative;
+  border-radius: 9999px;
+  overflow: hidden;
+  box-shadow: 
+    0 20px 50px -12px rgba(0, 0, 0, 0.45),
+    0 0 25px rgba(213, 133, 31, 0.22);
+  display: inline-flex;
+}
+
+.liquid-metal-shader-wrap {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: 9999px;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.liquid-metal-inner {
+  position: relative;
+  z-index: 10;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  background: linear-gradient(180deg, #241A14 0%, #150F0B 100%);
+  color: #FFFFFF;
+  transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+  width: 100%;
+}
+
+.liquid-metal-btn:hover .liquid-metal-inner {
+  background: linear-gradient(180deg, #332319 0%, #1A130E 100%);
+  box-shadow: inset 0 1px 1px rgba(213, 133, 31, 0.4);
+}
+
+.liquid-metal-icon-wrap {
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(213, 133, 31, 0.18);
+  color: var(--color-accent-amber, #D5851F);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+  flex-shrink: 0;
+}
+
+.liquid-metal-label {
+  font-family: var(--font-sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-accent-amber, #D5851F);
+  display: inline-block;
+}
+
+/* Size Variants */
+.liquid-metal-sm .liquid-metal-inner {
+  padding: 8px 22px 8px 8px;
+  gap: 10px;
+  font-size: 0.75rem;
+}
+.liquid-metal-sm .liquid-metal-icon-wrap {
+  width: 30px;
+  height: 30px;
+}
+
+.liquid-metal-md .liquid-metal-inner {
+  padding: 12px 30px 12px 12px;
+  gap: 14px;
+  font-size: 0.82rem;
+}
+.liquid-metal-md .liquid-metal-icon-wrap {
+  width: 38px;
+  height: 38px;
+}
+
+.liquid-metal-lg .liquid-metal-inner {
+  padding: 16px 38px 16px 16px;
+  gap: 18px;
+  font-size: 0.92rem;
+}
+.liquid-metal-lg .liquid-metal-icon-wrap {
+  width: 46px;
+  height: 46px;
+}
+
+/* Fallback / Support for Tailwind Utility Classes */
+.relative { position: relative; }
+.absolute { position: absolute; }
+.inset-0 { inset: 0; }
+.z-0 { z-index: 0; }
+.z-10 { z-index: 10; }
+.overflow-hidden { overflow: hidden; }
+.rounded-full { border-radius: 9999px; }
+.cursor-pointer { cursor: pointer; }
+.border-none { border: none; }
+.bg-transparent { background-color: transparent; }
+.p-0 { padding: 0; }
+.outline-none { outline: none; }
+.flex { display: flex; }
+.inline-block { display: inline-block; }
+.items-center { align-items: center; }
+.justify-content { justify-content: center; }
+.font-medium { font-weight: 500; }
+.tracking-tight { letter-spacing: -0.025em; }
+.whitespace-nowrap { white-space: nowrap; }
+.leading-none { line-height: 1; }

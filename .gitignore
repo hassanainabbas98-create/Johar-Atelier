@@ -1,0 +1,69 @@
+# ==============================================================================
+# L'Archive Vivante - Root .gitignore
+# ==============================================================================
+
+# .NET / C# Build Artifacts
+**/bin/
+**/obj/
+**/publish/
+*.user
+*.userosscache
+*.suo
+*.userprefs
+*.pidb
+*.booproj
+
+# Visual Studio & IDE Settings
+.vs/
+.idea/
+*.DotSettings.user
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# Production Credentials & Environment Secrets (NEVER COMMIT)
+**/appsettings.Production.json
+**/appsettings.*.local.json
+**/*.local.json
+**/*.secret.json
+client/.env
+client/.env.local
+client/.env.production.local
+client/.env.development.local
+
+# Node.js & Vite Client Artifacts
+client/node_modules/
+client/dist/
+client/dist-ssr/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Raw source videos and heavy uncompressed footage
+Pictures/
+*.mp4
+*.mov
+*.avi
+
+# Uploads directory - preserve web artworks in repo for zero-config deployment
+# (Uncomment below if using an external CDN/S3/Cloudinary bucket)
+# src/Johar.Api/wwwroot/uploads/artworks/*
+# src/Johar.Api/wwwroot/uploads/profile/*
+!src/Johar.Api/wwwroot/uploads/artworks/.gitkeep
+!src/Johar.Api/wwwroot/uploads/profile/.gitkeep
+
+# Temporary Test & Scratch Scripts
+scratch/
+temp/
+*.log
+/*.png
+/*.jpg
+
+# Operating System Files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+[Dd]esktop.ini

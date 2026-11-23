@@ -1,0 +1,851 @@
+/* ==========================================================================
+   ECLIPSE CINEMATIC ARCHITECTURE — HOMEPAGE STYLES
+   ========================================================================== */
+
+.page {
+  position: relative;
+  background-color: var(--color-eclipse-bg);
+  color: var(--color-eclipse-ink);
+  min-height: 100vh;
+  overflow-x: hidden;
+  padding-bottom: 120px;
+}
+
+/* 1. CINEMATIC VIDEO BACKGROUND */
+.cinema {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.videoBackground {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.44;
+  filter: contrast(1.1) brightness(0.85);
+  transform: scale(1.02);
+}
+
+.vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 45%, rgba(90, 62, 43, 0.15) 0%, transparent 45%, rgba(6, 10, 16, 0.94) 85%);
+}
+
+.grain {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(213, 133, 31, 0.08) 1px, transparent 1px);
+  background-size: 3px 3px;
+  opacity: 0.55;
+}
+
+.exposureOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(6, 10, 16, 0.3) 0%,
+    rgba(31, 21, 14, 0.45) 35%,
+    rgba(6, 10, 16, 0.92) 80%,
+    #060a10 100%
+  );
+}
+
+/* 2. COPY STAGE & CHAPTERS */
+.stage {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 var(--pad-eclipse);
+}
+
+.chapter {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 96px 0 54px;
+  box-sizing: border-box;
+  scroll-margin-top: 60px;
+}
+
+/* Eyebrow with Gold Hairline */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 2.8px;
+  text-transform: uppercase;
+  color: var(--color-eclipse-gold);
+  margin-bottom: 18px;
+}
+
+.hairline {
+  display: inline-block;
+  width: 24px;
+  height: 1px;
+  background: var(--color-eclipse-gold);
+}
+
+/* Monumental Typography — Refined Museum Scale */
+.monumentalHeading {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 3.8vw, 54px);
+  font-weight: 400;
+  line-height: 1.18;
+  letter-spacing: -0.015em;
+  color: var(--color-eclipse-ink);
+  margin: 0 0 22px;
+  max-width: 920px;
+}
+
+.headingLinePrimary {
+  display: block;
+  white-space: normal;
+  color: var(--color-eclipse-ink);
+}
+
+.headingLineSecondary {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.35em;
+  white-space: normal;
+}
+
+.line {
+  display: block;
+  white-space: normal;
+}
+
+.lineOutline {
+  -webkit-text-stroke: 1px rgba(244, 217, 160, 0.7);
+  color: transparent;
+  display: inline-block;
+}
+
+.lineWarm {
+  color: var(--color-eclipse-gold);
+  background: linear-gradient(105deg, #f5ebd9 15%, #d5851f 52%, #87a96b 85%, #f5ebd9 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  display: inline-block;
+}
+
+.introCopy {
+  font-family: var(--font-sans);
+  font-size: clamp(14px, 1.15vw, 16px);
+  line-height: 1.75;
+  color: var(--color-eclipse-muted);
+  max-width: 620px;
+  margin: 0 0 32px;
+}
+
+/* Corner-Bracketed Journey Button */
+.journeyButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 36px;
+  min-width: 260px;
+  border: 1px solid rgba(213, 133, 31, 0.4);
+  padding: 20px 24px;
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--color-eclipse-ink);
+  background: linear-gradient(110deg, rgba(90, 62, 43, 0.45) 0%, rgba(6, 10, 16, 0.7) 100%);
+  position: relative;
+  cursor: pointer;
+  transition: background 0.35s ease, border-color 0.35s ease, transform 0.25s ease, box-shadow 0.35s ease;
+  isolation: isolate;
+  text-decoration: none;
+}
+
+.journeyButton:before,
+.journeyButton:after {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  width: 7px;
+  height: 7px;
+  border-top: 1px solid var(--color-eclipse-gold);
+  border-left: 1px solid var(--color-eclipse-gold);
+  pointer-events: none;
+}
+
+.journeyButton:after {
+  inset: auto -1px -1px auto;
+  transform: rotate(180deg);
+}
+
+.journeyButton:hover {
+  background: linear-gradient(110deg, rgba(90, 62, 43, 0.75) 0%, rgba(213, 133, 31, 0.2) 100%);
+  border-color: var(--color-eclipse-gold);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(213, 133, 31, 0.25);
+}
+
+.buttonArrow {
+  font-size: 18px;
+  line-height: 1;
+  color: var(--color-eclipse-gold);
+  transition: transform 0.3s ease;
+}
+
+.journeyButton:hover .buttonArrow {
+  transform: translate(3px, 3px);
+}
+
+.heroActionsRow {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.heroMicroNote {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(156, 169, 178, 0.6);
+  margin-top: 36px;
+}
+
+/* 3. CHAPTER 02: CURATED ARCHIVE & WORKS */
+.archiveGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 32px 28px;
+  margin: 40px 0;
+}
+
+.artworkCard {
+  background: rgba(16, 13, 12, 0.75);
+  border: 1px solid rgba(90, 62, 43, 0.35);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.35s ease, border-color 0.35s ease, background 0.35s ease, box-shadow 0.35s ease;
+  position: relative;
+  overflow: hidden;
+  min-width: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.artworkCard:hover {
+  transform: translateY(-5px);
+  border-color: rgba(213, 133, 31, 0.5);
+  background: rgba(42, 28, 19, 0.65);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6);
+}
+
+.artworkThumbWrapper {
+  aspect-ratio: 4 / 3;
+  background: #090e15;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 20px;
+  overflow: hidden;
+}
+
+.artworkImg {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.artworkCard:hover .artworkImg {
+  transform: scale(1.05);
+}
+
+.catBadge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: 1.5px;
+  color: var(--color-accent-sage);
+  background: rgba(42, 28, 19, 0.92);
+  border: 1px solid rgba(135, 169, 107, 0.45);
+  padding: 4px 8px;
+  z-index: 2;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.watermarkBadge {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  font-family: var(--font-cinzel), serif;
+  font-size: 8px;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: rgba(244, 217, 160, 0.9);
+  background: rgba(6, 10, 16, 0.72);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid rgba(213, 133, 31, 0.35);
+  padding: 2.5px 7px;
+  border-radius: 2px;
+  pointer-events: none;
+  user-select: none;
+  z-index: 2;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+  white-space: nowrap;
+}
+
+.artworkInfo {
+  padding: 22px 22px 24px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.artworkTitle {
+  font-family: var(--font-display);
+  font-size: 21px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--color-eclipse-ink);
+  margin: 0 0 6px;
+}
+
+.artworkMeta {
+  font-family: var(--font-sans);
+  font-size: 9px;
+  color: var(--color-eclipse-muted);
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  margin: 0 0 16px;
+}
+
+.artworkActions {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid rgba(224, 232, 236, 0.1);
+  padding-top: 14px;
+}
+
+.inspectLink {
+  background: transparent;
+  border: none;
+  font-family: var(--font-sans);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--color-eclipse-gold);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0;
+  transition: color 0.2s;
+}
+
+.inspectLink:hover {
+  color: #FFFFFF;
+}
+
+/* 4. CHAPTER 03: THE QUIET SANCTUM */
+.sanctumGrid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: clamp(40px, 6vw, 90px);
+  align-items: center;
+  margin-top: 36px;
+}
+
+.sanctumQuote {
+  font-family: var(--font-display);
+  font-size: clamp(22px, 2.6vw, 36px);
+  line-height: 1.45;
+  font-style: italic;
+  color: #f2ede4;
+  margin: 0 0 28px;
+  border-left: 2px solid var(--color-accent-sage);
+  padding-left: 24px;
+}
+
+.sanctumText {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.85;
+  color: var(--color-eclipse-muted);
+  margin: 0 0 32px;
+}
+
+.materialDisciplines {
+  background: linear-gradient(135deg, rgba(90, 62, 43, 0.22) 0%, rgba(10, 16, 25, 0.8) 100%);
+  border: 1px solid rgba(90, 62, 43, 0.45);
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.disciplineItem {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid rgba(90, 62, 43, 0.35);
+  padding-bottom: 16px;
+}
+
+.disciplineItem:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.disciplineName {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--color-accent-sage);
+  margin-bottom: 6px;
+}
+
+.disciplineDesc {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  color: var(--color-eclipse-ink);
+  line-height: 1.6;
+}
+
+/* 5. CHAPTER 04: BESPOKE COMMISSIONS */
+.commissionBox {
+  background: radial-gradient(ellipse at 80% 30%, rgba(90, 62, 43, 0.45) 0%, rgba(8, 14, 22, 0.95) 75%);
+  border: 1px solid rgba(213, 133, 31, 0.35);
+  padding: clamp(36px, 5vw, 64px);
+  position: relative;
+  overflow: hidden;
+}
+
+.commissionBox:before,
+.commissionBox:after {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  width: 14px;
+  height: 14px;
+  border-top: 2px solid var(--color-eclipse-gold);
+  border-left: 2px solid var(--color-eclipse-gold);
+  pointer-events: none;
+}
+
+.commissionBox:after {
+  inset: auto -1px -1px auto;
+  transform: rotate(180deg);
+}
+
+.commissionActionsRow {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-top: 36px;
+}
+
+/* 6. FIXED BOTTOM HUD */
+.bottomHud {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 80;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 20px var(--pad-eclipse) 26px;
+  gap: clamp(20px, 3vw, 60px);
+  background: linear-gradient(0deg, rgba(6, 10, 16, 0.96) 0%, rgba(6, 10, 16, 0.7) 65%, transparent 100%);
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.bottomHud > * {
+  pointer-events: auto;
+}
+
+.travelHint {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  white-space: nowrap;
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #b7c1c7;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+
+.scrollMouse {
+  display: inline-block;
+  width: 13px;
+  height: 21px;
+  border: 1px solid rgba(166, 177, 183, 0.45);
+  border-radius: 9px;
+  position: relative;
+}
+
+.scrollMouse:before {
+  content: "";
+  position: absolute;
+  width: 1.5px;
+  height: 4.5px;
+  background: var(--color-eclipse-gold);
+  top: 4px;
+  left: 5px;
+  animation: scroll-tick 2s infinite ease-in-out;
+}
+
+.chapterNav {
+  position: relative;
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  max-width: 640px;
+  margin: auto;
+}
+
+.routeTrack {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: rgba(224, 232, 236, 0.16);
+  top: 0;
+}
+
+.routeProgress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 1px;
+  background: var(--color-eclipse-gold);
+  box-shadow: 0 0 10px rgba(217, 175, 117, 0.8);
+  transition: width 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.navStepBtn {
+  background: transparent;
+  border: none;
+  text-align: left;
+  padding: 14px 6px 0 0;
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  position: relative;
+  color: #70808c;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  transition: color 0.3s;
+}
+
+.navStepBtn:before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: 0;
+  width: 5px;
+  height: 5px;
+  border: 1px solid #8a9399;
+  background: #121a22;
+  transform: rotate(45deg);
+  transition: all 0.3s;
+}
+
+.navStepBtn[aria-current="step"] {
+  color: #d9c5a8;
+}
+
+.navStepBtn[aria-current="step"]:before {
+  background: var(--color-eclipse-gold);
+  border-color: #e1c49b;
+  box-shadow: 0 0 9px rgba(217, 182, 122, 0.8);
+}
+
+.navStepNum {
+  font-weight: 700;
+  font-size: 9px;
+  color: var(--color-eclipse-gold);
+}
+
+.navStepLabel {
+  display: block;
+}
+
+.utilities {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.utilBtn {
+  background: transparent;
+  border: 1px solid rgba(224, 232, 236, 0.16);
+  color: #b7c1c7;
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 8px 12px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.25s ease;
+}
+
+.utilBtn:hover {
+  border-color: var(--color-eclipse-gold);
+  color: var(--color-eclipse-ink);
+}
+
+.soundBars {
+  display: inline-flex;
+  gap: 2px;
+  align-items: center;
+  height: 14px;
+}
+
+.soundBars i {
+  height: 3px;
+  width: 1.5px;
+  background: var(--color-eclipse-gold);
+  transition: height 0.3s;
+  display: inline-block;
+}
+
+.soundBarsActive i {
+  animation: soundbar 1.3s ease-in-out infinite alternate;
+}
+
+.soundBarsActive i:nth-child(2) {
+  animation-delay: 0.25s;
+}
+
+.soundBarsActive i:nth-child(3) {
+  animation-delay: 0.5s;
+}
+
+.soundBarsActive i:nth-child(4) {
+  animation-delay: 0.75s;
+}
+
+/* Mobile Responsive */
+@media (max-width: 900px) {
+  .chapterNav {
+    display: none;
+  }
+
+  .travelHint {
+    display: none;
+  }
+
+  .bottomHud {
+    padding: 12px var(--pad-eclipse) 16px;
+    pointer-events: none;
+  }
+
+  .utilities {
+    margin-left: auto;
+    pointer-events: auto;
+  }
+
+  .chapter {
+    padding: 80px 0 40px;
+    min-height: auto;
+  }
+
+  .monumentalHeading {
+    font-size: clamp(26px, 5.5vw, 40px);
+    line-height: 1.2;
+    margin: 0 0 18px;
+  }
+
+  .archiveGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(10px, 2.5vw, 16px);
+    margin: 24px 0;
+  }
+
+  .sanctumGrid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .heroActionsRow {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .journeyButton {
+    min-width: auto;
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 640px) {
+  .stage {
+    padding: 0 16px;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  .chapter {
+    padding: 72px 0 30px;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  .archiveGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .artworkCard {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .monumentalHeading {
+    font-size: clamp(21px, 6.2vw, 29px);
+    line-height: 1.22;
+    margin: 0 0 14px;
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+}
+
+@media (max-width: 480px) {
+  .chapter {
+    padding: 72px 0 30px;
+  }
+
+  .archiveGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+
+  .eyebrow {
+    font-size: 8.5px;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+  }
+
+  .monumentalHeading {
+    font-size: clamp(23px, 6.8vw, 30px);
+    line-height: 1.22;
+    margin: 0 0 14px;
+  }
+
+  .headingLineSecondary {
+    gap: 0.2em;
+  }
+
+  .introCopy {
+    font-size: 13px;
+    line-height: 1.65;
+    margin: 0 0 20px;
+  }
+
+  .journeyButton {
+    padding: 12px 16px;
+    font-size: 9px;
+    letter-spacing: 1.5px;
+  }
+
+  .heroMicroNote {
+    margin-top: 18px;
+    font-size: 7px;
+    letter-spacing: 1.2px;
+  }
+
+  .artworkThumbWrapper {
+    padding: 8px;
+  }
+
+  .artworkInfo {
+    padding: 10px 8px 12px;
+  }
+
+  .artworkTitle {
+    font-size: 14px;
+    margin: 0 0 3px;
+  }
+
+  .artworkMeta {
+    font-size: 7.5px;
+    margin: 0 0 8px;
+  }
+
+  .artworkActions {
+    padding-top: 8px;
+  }
+
+  .inspectLink {
+    font-size: 7.5px;
+  }
+
+  .sanctumQuote {
+    font-size: 17px;
+    padding-left: 14px;
+    line-height: 1.45;
+    margin: 0 0 16px;
+  }
+
+  .sanctumText {
+    font-size: 13px;
+    line-height: 1.7;
+    margin: 0 0 20px;
+  }
+
+  .materialDisciplines {
+    padding: 18px 14px;
+    gap: 14px;
+  }
+
+  .commissionBox {
+    padding: 24px 14px;
+  }
+
+  .commissionActionsRow {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    margin-top: 20px;
+  }
+}

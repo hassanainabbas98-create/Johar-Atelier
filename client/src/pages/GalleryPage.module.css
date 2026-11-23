@@ -1,0 +1,485 @@
+/* Eclipse Cosmic Architecture — Gallery Page */
+.page {
+  padding-bottom: var(--space-24);
+  background-color: var(--color-eclipse-bg);
+  color: var(--color-eclipse-ink);
+  min-height: 100vh;
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+.galleryHeader {
+  padding: 60px 0 40px 0;
+  border-bottom: 1px solid rgba(90, 62, 43, 0.35);
+  background: radial-gradient(ellipse at 50% 0%, rgba(90, 62, 43, 0.35) 0%, #060a10 75%);
+}
+
+.headerInner {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 var(--pad-eclipse);
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-sans);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 2.8px;
+  text-transform: uppercase;
+  color: var(--color-eclipse-gold);
+  margin-bottom: 16px;
+}
+
+.hairline {
+  display: inline-block;
+  width: 24px;
+  height: 1px;
+  background: var(--color-eclipse-gold);
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: clamp(38px, 5.2vw, 76px);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+  color: var(--color-eclipse-ink);
+  margin: 0 0 16px;
+}
+
+.description {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  color: var(--color-eclipse-muted);
+  max-width: 680px;
+  line-height: 1.75;
+  margin: 0;
+}
+
+/* ==========================================================================
+   Sticky Filter Sub-bar
+   ========================================================================== */
+.filterBar {
+  position: sticky;
+  top: 88px; /* Fixed HUD header offset */
+  z-index: 40;
+  background-color: rgba(14, 11, 10, 0.94);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-bottom: 1px solid rgba(90, 62, 43, 0.4);
+  padding: 16px 0;
+  transition: box-shadow var(--transition-fast);
+}
+
+.filterInner {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 var(--pad-eclipse);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.categoryPills {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.pill {
+  font-family: var(--font-sans);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 8px 18px;
+  border-radius: 20px;
+  background-color: rgba(90, 62, 43, 0.2);
+  color: var(--color-eclipse-muted);
+  border: 1px solid rgba(135, 169, 107, 0.25);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.pill:hover {
+  border-color: var(--color-accent-sage);
+  color: var(--color-accent-sage);
+  background-color: rgba(135, 169, 107, 0.12);
+}
+
+.activePill {
+  background-color: rgba(135, 169, 107, 0.18);
+  border-color: var(--color-accent-sage);
+  color: var(--color-accent-sage);
+  box-shadow: 0 0 14px rgba(135, 169, 107, 0.35);
+}
+
+.filterControls {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+/* View Mode Toggle: 3D Sanctuary vs Catalogue Grid */
+.viewModeToggle {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(14, 11, 10, 0.95);
+  border: 1px solid rgba(213, 133, 31, 0.35);
+  border-radius: 2px;
+  padding: 3px;
+  gap: 4px;
+}
+
+.viewModeBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-sans);
+  font-size: 8.5px;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  padding: 6px 12px;
+  border-radius: 2px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--color-eclipse-muted);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.viewModeBtn:hover {
+  color: var(--color-eclipse-ink);
+}
+
+.activeViewModeBtn {
+  background: linear-gradient(110deg, rgba(90, 62, 43, 0.8) 0%, rgba(213, 133, 31, 0.35) 100%);
+  border-color: rgba(213, 133, 31, 0.4);
+  color: #f4d9a0;
+  box-shadow: 0 0 12px rgba(213, 133, 31, 0.25);
+}
+
+.selectWrapper {
+  position: relative;
+}
+
+.select {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  color: var(--color-eclipse-ink);
+  background-color: rgba(31, 21, 14, 0.85);
+  border: 1px solid rgba(213, 133, 31, 0.25);
+  padding: 8px 16px;
+  border-radius: 2px;
+  cursor: pointer;
+  outline: none;
+  transition: border-color var(--transition-fast);
+}
+
+.select:focus-visible {
+  outline: 2px solid var(--color-eclipse-gold);
+}
+
+.select option {
+  background-color: #1a120c;
+  color: var(--color-eclipse-ink);
+}
+
+.availabilityToggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-sans);
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--color-eclipse-muted);
+  cursor: pointer;
+  user-select: none;
+}
+
+.checkbox {
+  width: 15px;
+  height: 15px;
+  accent-color: var(--color-eclipse-gold);
+  cursor: pointer;
+}
+
+/* ==========================================================================
+   Main Gallery Area
+   ========================================================================== */
+.galleryContent {
+  max-width: var(--container-max-width);
+  margin: 36px auto 0 auto;
+  padding: 0 var(--pad-eclipse);
+}
+
+.tallyBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 32px;
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: rgba(156, 169, 178, 0.7);
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(224, 232, 236, 0.1);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 18px 14px;
+}
+
+.emptyState {
+  text-align: center;
+  padding: 80px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.emptyTitle {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 400;
+  color: var(--color-eclipse-ink);
+}
+
+.emptyText {
+  color: var(--color-eclipse-muted);
+  font-size: 14px;
+  max-width: 440px;
+  line-height: 1.7;
+}
+
+.resetBtn {
+  margin-top: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  background-color: transparent;
+  color: var(--color-eclipse-gold);
+  border: 1px solid var(--color-eclipse-gold);
+  padding: 12px 24px;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.resetBtn:hover {
+  background-color: rgba(217, 175, 117, 0.15);
+  box-shadow: 0 0 16px rgba(217, 175, 117, 0.25);
+}
+
+.loadMoreContainer {
+  margin-top: 64px;
+  display: flex;
+  justify-content: center;
+}
+
+.loadMoreButton {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  background: linear-gradient(110deg, rgba(90, 62, 43, 0.45) 0%, rgba(6, 10, 16, 0.7) 100%);
+  color: var(--color-eclipse-ink);
+  border: 1px solid rgba(213, 133, 31, 0.4);
+  padding: 16px 36px;
+  position: relative;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  isolation: isolate;
+}
+
+.loadMoreButton:before,
+.loadMoreButton:after {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  width: 7px;
+  height: 7px;
+  border-top: 1px solid var(--color-eclipse-gold);
+  border-left: 1px solid var(--color-eclipse-gold);
+}
+
+.loadMoreButton:after {
+  inset: auto -1px -1px auto;
+  transform: rotate(180deg);
+}
+
+.loadMoreButton:hover:not(:disabled) {
+  background: linear-gradient(110deg, rgba(90, 62, 43, 0.75) 0%, rgba(213, 133, 31, 0.2) 100%);
+  border-color: var(--color-eclipse-gold);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(213, 133, 31, 0.25);
+}
+
+.loadMoreButton:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+@media (max-width: 1400px) {
+  .grid {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 16px 12px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .grid {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 14px 10px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px 10px;
+  }
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .galleryHeader {
+    padding: 70px 0 28px;
+  }
+
+  .title {
+    font-size: clamp(28px, 7vw, 42px);
+    margin: 0 0 12px;
+  }
+
+  .description {
+    font-size: 13px;
+    line-height: 1.65;
+  }
+
+  .filterBar {
+    top: 58px;
+    padding: 10px 0;
+  }
+
+  .filterInner {
+    gap: 12px;
+  }
+
+  .categoryPills {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+    padding-bottom: 6px;
+    scrollbar-width: none;
+  }
+
+  .categoryPills::-webkit-scrollbar {
+    display: none;
+  }
+
+  .pill {
+    flex-shrink: 0;
+    padding: 6px 14px;
+    font-size: 8.5px;
+    letter-spacing: 1.2px;
+  }
+
+  .filterControls {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .selectWrapper,
+  .select {
+    width: 100%;
+  }
+
+  .availabilityToggle {
+    justify-content: flex-start;
+    padding: 4px 0;
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: clamp(8px, 2.5vw, 14px);
+  }
+
+  .loadMoreButton {
+    width: 100%;
+    justify-content: center;
+    padding: 14px 20px;
+  }
+}
+
+@media (max-width: 640px) {
+  .headerInner,
+  .filterInner,
+  .galleryContent {
+    padding: 0 10px;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .tallyBar {
+    margin-bottom: 16px;
+    font-size: 7.5px;
+    letter-spacing: 1px;
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 8px;
+  }
+
+  .filterBar {
+    top: 52px;
+    padding: 8px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .headerInner,
+  .filterInner,
+  .galleryContent {
+    padding: 0 6px;
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 6px;
+  }
+}

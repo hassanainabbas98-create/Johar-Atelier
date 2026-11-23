@@ -1,0 +1,296 @@
+/* Eclipse Cosmic Architecture — About Page */
+.page {
+  padding: 60px 0 var(--space-24) 0;
+  background-color: var(--color-eclipse-bg);
+  color: var(--color-eclipse-ink);
+  min-height: 100vh;
+}
+
+.inner {
+  max-width: var(--container-narrow-width);
+  margin: 0 auto;
+  padding: 0 var(--pad-eclipse);
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+.header {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-sans);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 2.8px;
+  text-transform: uppercase;
+  color: var(--color-eclipse-gold);
+}
+
+.hairline {
+  display: inline-block;
+  width: 24px;
+  height: 1px;
+  background: var(--color-eclipse-gold);
+}
+
+.name {
+  font-family: var(--font-display);
+  font-size: clamp(38px, 5.5vw, 76px);
+  font-weight: 400;
+  color: var(--color-eclipse-ink);
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+  margin: 0;
+}
+
+.studioMeta {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--color-eclipse-muted);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* Portrait Anchor */
+.portraitWrapper {
+  max-width: 440px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.portraitFrame {
+  background: radial-gradient(ellipse at center, rgba(90, 62, 43, 0.35) 0%, #060a10 75%);
+  border: 1px solid rgba(213, 133, 31, 0.4);
+  padding: 16px;
+  position: relative;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.85);
+}
+
+.portraitFrame:before,
+.portraitFrame:after {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  width: 10px;
+  height: 10px;
+  border-top: 2px solid var(--color-eclipse-gold);
+  border-left: 2px solid var(--color-eclipse-gold);
+}
+
+.portraitFrame:after {
+  inset: auto -1px -1px auto;
+  transform: rotate(180deg);
+}
+
+.portraitImg {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  display: block;
+}
+
+.monogramBox {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background-color: #080d15;
+  border: 1px solid rgba(224, 232, 236, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 4.5rem;
+  color: var(--color-eclipse-gold);
+  font-style: italic;
+}
+
+/* Strictly Separate Artist Statement */
+.statementSection {
+  background: linear-gradient(135deg, rgba(90, 62, 43, 0.25) 0%, rgba(10, 16, 25, 0.8) 100%);
+  border: 1px solid rgba(90, 62, 43, 0.4);
+  border-left: 3px solid var(--color-accent-sage);
+  padding: 40px 48px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
+.statementLabel {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--color-accent-sage);
+  margin-bottom: 16px;
+}
+
+.statementText {
+  font-family: var(--font-display);
+  font-size: clamp(22px, 2.6vw, 34px);
+  font-style: italic;
+  line-height: 1.5;
+  color: #f0e9dd;
+  margin: 0;
+}
+
+/* Biography Narrative */
+.bioSection {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.sectionHeading {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 3.4vw, 44px);
+  font-weight: 400;
+  color: var(--color-eclipse-ink);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.narrativeText {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  color: var(--color-eclipse-muted);
+  line-height: 1.85;
+  white-space: pre-line;
+}
+
+/* Optional Highlights Blocks */
+.optionalBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-top: 36px;
+  border-top: 1px solid rgba(224, 232, 236, 0.12);
+}
+
+.blockTitle {
+  font-family: var(--font-display);
+  font-size: 26px;
+  color: var(--color-eclipse-ink);
+  margin: 0;
+}
+
+.blockContent {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  color: var(--color-eclipse-muted);
+  line-height: 1.8;
+  white-space: pre-line;
+}
+
+/* Studio Visit & Consultation CTA */
+.studioCta {
+  background: radial-gradient(ellipse at 80% 30%, rgba(90, 62, 43, 0.45) 0%, rgba(8, 14, 22, 0.95) 70%);
+  border: 1px solid rgba(213, 133, 31, 0.4);
+  padding: 56px 48px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  position: relative;
+  isolation: isolate;
+}
+
+.studioCta:before,
+.studioCta:after {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  width: 12px;
+  height: 12px;
+  border-top: 2px solid var(--color-eclipse-gold);
+  border-left: 2px solid var(--color-eclipse-gold);
+}
+
+.studioCta:after {
+  inset: auto -1px -1px auto;
+  transform: rotate(180deg);
+}
+
+.studioCtaTitle {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 3.4vw, 42px);
+  color: var(--color-eclipse-ink);
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.studioCtaDesc {
+  color: var(--color-eclipse-muted);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  max-width: 520px;
+  line-height: 1.75;
+  margin: 0;
+}
+
+.ctaBtn {
+  margin-top: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  background: linear-gradient(110deg, rgba(90, 62, 43, 0.5) 0%, rgba(6, 10, 16, 0.7) 100%);
+  color: var(--color-eclipse-ink);
+  border: 1px solid rgba(213, 133, 31, 0.45);
+  padding: 16px 32px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.ctaBtn:hover {
+  background: linear-gradient(110deg, rgba(90, 62, 43, 0.8) 0%, rgba(213, 133, 31, 0.25) 100%);
+  color: #FFFFFF;
+  box-shadow: 0 0 20px rgba(213, 133, 31, 0.3);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .page {
+    padding: 30px 0 50px 0;
+  }
+
+  .inner {
+    gap: 36px;
+  }
+
+  .name {
+    font-size: clamp(28px, 8vw, 42px);
+  }
+
+  .statementSection {
+    padding: 22px 18px;
+  }
+
+  .statementText {
+    font-size: clamp(17px, 4.8vw, 22px);
+  }
+
+  .studioCta {
+    padding: 32px 18px;
+  }
+
+  .ctaBtn {
+    width: 100%;
+    padding: 14px 20px;
+  }
+}

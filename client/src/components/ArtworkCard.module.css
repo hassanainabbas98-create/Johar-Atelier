@@ -1,0 +1,398 @@
+/* Eclipse Cosmic Luxury Artwork Card */
+.card {
+  display: flex;
+  flex-direction: column;
+  background: rgba(16, 13, 12, 0.75);
+  border: 1px solid rgba(90, 62, 43, 0.35);
+  border-radius: 2px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  transition: transform var(--transition-standard), border-color var(--transition-standard), background var(--transition-standard), box-shadow var(--transition-standard);
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+  min-width: 0;
+  width: 100%;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(213, 133, 31, 0.5);
+  background: rgba(42, 28, 19, 0.65);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), 0 0 20px rgba(213, 133, 31, 0.18);
+}
+
+/* Neutral Dark Museum Matboard (Never crop artwork) */
+.matboardFrame {
+  position: relative;
+  background-color: #080d15;
+  border-bottom: 1px solid rgba(224, 232, 236, 0.1);
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  min-height: 220px;
+}
+
+.imageLink {
+  display: block;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+}
+
+.imageContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.watermarkBadge {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  font-family: var(--font-cinzel), serif;
+  font-size: 8px;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: rgba(244, 217, 160, 0.9);
+  background: rgba(6, 10, 16, 0.72);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid rgba(213, 133, 31, 0.35);
+  padding: 2.5px 7px;
+  border-radius: 2px;
+  pointer-events: none;
+  user-select: none;
+  z-index: 5;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+  white-space: nowrap;
+}
+
+.artworkImage {
+  width: 100%;
+  height: auto;
+  max-height: 480px;
+  object-fit: contain; /* Fine Art Guardrail: Never crop or fill */
+  margin: 0 auto;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.7);
+  transition: transform var(--transition-standard);
+}
+
+.card:hover .artworkImage {
+  transform: scale(1.02);
+}
+
+.placeholderMatboard {
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-eclipse-muted);
+  background-color: #080d15;
+  gap: var(--space-2);
+  font-family: var(--font-display);
+  font-size: var(--font-size-md);
+  font-style: italic;
+  border-bottom: 1px solid rgba(224, 232, 236, 0.1);
+}
+
+/* Metadata Panel */
+.metaPanel {
+  padding: 16px 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex-grow: 1;
+}
+
+.topRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.catBadge {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: 1.5px;
+  color: var(--color-accent-sage);
+  background: rgba(42, 28, 19, 0.9);
+  border: 1px solid rgba(135, 169, 107, 0.4);
+  padding: 3px 6px;
+}
+
+.medium {
+  color: var(--color-accent-sage);
+  font-weight: 600;
+}
+
+.statusWrapper {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--color-eclipse-muted);
+}
+
+.statusDot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.statusAvailable {
+  background-color: var(--color-accent-sage);
+  box-shadow: 0 0 8px rgba(135, 169, 107, 0.85);
+}
+
+.statusReserved {
+  background-color: var(--color-accent-amber);
+  box-shadow: 0 0 8px rgba(213, 133, 31, 0.85);
+}
+
+.statusSold {
+  background-color: rgba(90, 62, 43, 0.7);
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  line-height: 1.25;
+  color: var(--color-eclipse-ink);
+  margin-top: 2px;
+}
+
+.titleLink {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.titleLink:hover {
+  color: var(--color-eclipse-gold);
+}
+
+.specs {
+  font-family: var(--font-sans);
+  font-size: 9px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--color-eclipse-muted);
+  line-height: 1.6;
+}
+
+.cardFooter {
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 1px solid rgba(224, 232, 236, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.detailLink {
+  font-family: var(--font-sans);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--color-eclipse-muted);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: color var(--transition-fast);
+}
+
+.detailLink:hover {
+  color: var(--color-eclipse-ink);
+}
+
+.inquireTrigger {
+  font-family: var(--font-sans);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--color-eclipse-gold);
+  background: none;
+  border: none;
+  padding: 4px 0;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: color var(--transition-fast), transform var(--transition-fast);
+}
+
+.inquireTrigger:hover {
+  color: #FFFFFF;
+  transform: translateX(2px);
+}
+
+@media (max-width: 768px) {
+  .matboardFrame {
+    min-height: 150px;
+    padding: 10px;
+  }
+
+  .artworkImage {
+    max-height: 220px;
+  }
+
+  .metaPanel {
+    padding: 12px 10px 14px;
+    gap: 5px;
+  }
+
+  .topRow {
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  .medium {
+    font-size: 7.5px;
+    letter-spacing: 0.8px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 100%;
+  }
+
+  .statusWrapper {
+    font-size: 7px;
+    letter-spacing: 0.8px;
+  }
+
+  .title {
+    font-size: clamp(14px, 3.6vw, 16px);
+    line-height: 1.25;
+    margin-top: 2px;
+  }
+
+  .specs {
+    font-size: 8px;
+    line-height: 1.35;
+  }
+
+  .cardFooter {
+    padding-top: 8px;
+    margin-top: 4px;
+    gap: 4px;
+    flex-wrap: wrap;
+  }
+
+  .detailLink,
+  .inquireTrigger {
+    padding: 4px 0;
+    font-size: 8px;
+    letter-spacing: 0.8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .matboardFrame {
+    min-height: 110px;
+    padding: 6px;
+  }
+
+  .artworkImage {
+    max-height: 140px;
+  }
+
+  .metaPanel {
+    padding: 8px 6px 10px;
+    gap: 4px;
+  }
+
+  .topRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4px;
+    flex-wrap: nowrap;
+    width: 100%;
+  }
+
+  .medium {
+    flex: 1;
+    min-width: 0;
+    font-size: 7px;
+    letter-spacing: 0.5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .statusWrapper {
+    flex-shrink: 0;
+    font-size: 6.5px;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+  }
+
+  .title {
+    font-size: clamp(11.5px, 3.4vw, 13.5px);
+    line-height: 1.2;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin-top: 1px;
+  }
+
+  .specs {
+    font-size: 7px;
+    line-height: 1.2;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .cardFooter {
+    padding-top: 6px;
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2px;
+    flex-wrap: nowrap;
+  }
+
+  .detailLink,
+  .inquireTrigger {
+    font-size: 7px;
+    letter-spacing: 0.4px;
+    padding: 2px 0;
+    white-space: nowrap;
+  }
+
+  .inquireTrigger svg {
+    width: 10px;
+    height: 10px;
+  }
+
+  .watermarkBadge {
+    font-size: 6px;
+    letter-spacing: 0.5px;
+    padding: 1.5px 3.5px;
+    bottom: 3px;
+    right: 3px;
+  }
+}

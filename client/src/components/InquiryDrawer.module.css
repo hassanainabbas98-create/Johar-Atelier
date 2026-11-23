@@ -1,0 +1,330 @@
+/* Eclipse Cosmic Architecture — Inquiry Drawer */
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(4, 7, 12, 0.82);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  z-index: 2000;
+  display: flex;
+  justify-content: flex-end;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-standard);
+}
+
+.backdropOpen {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.drawer {
+  width: 540px;
+  max-width: 95vw;
+  height: 100vh;
+  background: radial-gradient(ellipse at 100% 0%, rgba(90, 62, 43, 0.4) 0%, #060a10 75%);
+  border-left: 1px solid rgba(213, 133, 31, 0.35);
+  box-shadow: -16px 0 64px rgba(0, 0, 0, 0.95);
+  display: flex;
+  flex-direction: column;
+  transform: translateX(100%);
+  transition: transform var(--transition-standard);
+  overflow-y: auto;
+  color: var(--color-eclipse-ink);
+}
+
+.drawerOpen {
+  transform: translateX(0);
+}
+
+.header {
+  padding: 28px 36px;
+  border-bottom: 1px solid rgba(224, 232, 236, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgba(6, 10, 16, 0.92);
+  backdrop-filter: blur(12px);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 400;
+  color: var(--color-eclipse-ink);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.closeButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  color: var(--color-eclipse-ink);
+  border: 1px solid rgba(224, 232, 236, 0.18);
+  background: transparent;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.closeButton:hover {
+  color: var(--color-eclipse-gold);
+  border-color: var(--color-eclipse-gold);
+  transform: rotate(90deg);
+}
+
+.body {
+  padding: 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  flex-grow: 1;
+}
+
+.artworkContext {
+  background: rgba(31, 21, 14, 0.7);
+  border: 1px solid rgba(90, 62, 43, 0.4);
+  padding: 16px 20px;
+  border-left: 3px solid var(--color-accent-sage);
+}
+
+.artworkContextLabel {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--color-accent-sage);
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.artworkContextTitle {
+  font-family: var(--font-display);
+  font-size: 19px;
+  color: var(--color-eclipse-ink);
+  letter-spacing: -0.01em;
+}
+
+.artworkContextRef {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--color-eclipse-muted);
+  letter-spacing: 1px;
+  margin-top: 4px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.label {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--color-accent-sage);
+}
+
+.input, .textarea {
+  width: 100%;
+  padding: 14px 16px;
+  background-color: rgba(31, 21, 14, 0.85);
+  border: 1px solid rgba(213, 133, 31, 0.22);
+  color: var(--color-eclipse-ink);
+  border-radius: 2px;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  box-sizing: border-box;
+}
+
+.input:focus, .textarea:focus {
+  outline: none;
+  border-color: var(--color-eclipse-gold);
+  box-shadow: 0 0 12px rgba(213, 133, 31, 0.35);
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 120px;
+  line-height: 1.7;
+}
+
+.honeypot {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.errorMessage {
+  padding: 14px 18px;
+  background-color: rgba(158, 42, 43, 0.2);
+  border-left: 3px solid var(--color-error);
+  color: #fca5a5;
+  font-size: 13px;
+  font-family: var(--font-sans);
+}
+
+.submitBtn {
+  margin-top: 10px;
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--color-eclipse-ink);
+  background: linear-gradient(110deg, rgba(90, 62, 43, 0.55) 0%, rgba(6, 10, 16, 0.7) 100%);
+  border: 1px solid rgba(213, 133, 31, 0.45);
+  padding: 16px 28px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  position: relative;
+  isolation: isolate;
+  align-self: flex-start;
+}
+
+.submitBtn:before,
+.submitBtn:after {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  width: 7px;
+  height: 7px;
+  border-top: 1px solid var(--color-eclipse-gold);
+  border-left: 1px solid var(--color-eclipse-gold);
+}
+
+.submitBtn:after {
+  inset: auto -1px -1px auto;
+  transform: rotate(180deg);
+}
+
+.submitBtn:hover:not(:disabled) {
+  background: linear-gradient(110deg, rgba(90, 62, 43, 0.85) 0%, rgba(213, 133, 31, 0.25) 100%);
+  border-color: var(--color-eclipse-gold);
+  box-shadow: 0 0 20px rgba(213, 133, 31, 0.3);
+  transform: translateY(-2px);
+}
+
+.submitBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.disclaimer {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: rgba(156, 169, 178, 0.6);
+  line-height: 1.6;
+  margin-top: 12px;
+}
+
+/* Success State */
+.successView {
+  padding: 48px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 16px;
+}
+
+.successIconBadge {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: rgba(217, 175, 117, 0.15);
+  border: 1px solid var(--color-eclipse-gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-eclipse-gold);
+  box-shadow: 0 0 16px rgba(217, 175, 117, 0.35);
+}
+
+.successTitle {
+  font-family: var(--font-display);
+  font-size: 28px;
+  color: var(--color-eclipse-ink);
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.successText {
+  color: var(--color-eclipse-muted);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.75;
+  margin: 0;
+}
+
+.refBadge {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 8px 16px;
+  background-color: rgba(6, 10, 16, 0.8);
+  border: 1px solid rgba(217, 175, 117, 0.4);
+  color: var(--color-eclipse-gold);
+  margin-top: 8px;
+}
+
+@media (max-width: 600px) {
+  .drawer {
+    width: 100vw;
+    max-width: 100vw;
+    border-left: none;
+  }
+
+  .header {
+    padding: 18px 20px;
+  }
+
+  .title {
+    font-size: 22px;
+  }
+
+  .body {
+    padding: 22px 18px;
+    gap: 18px;
+  }
+
+  .input,
+  .textarea {
+    font-size: 16px !important;
+    padding: 12px 14px;
+  }
+
+  .submitBtn {
+    width: 100%;
+    align-self: stretch;
+    justify-content: center;
+    padding: 14px 18px;
+  }
+
+  .successView {
+    padding: 32px 16px;
+  }
+}

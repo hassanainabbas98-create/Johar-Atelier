@@ -1,0 +1,348 @@
+/* Eclipse Cosmic Architecture — Professional Atelier Side Menu Drawer */
+
+.dialogOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  background: rgba(4, 7, 12, 0.75);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  display: flex;
+  justify-content: flex-end;
+  animation: fadeInOverlay 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.menuDrawer {
+  width: 440px;
+  max-width: 92vw;
+  height: 100vh;
+  height: 100dvh;
+  margin: 0;
+  background: linear-gradient(180deg, rgba(22, 16, 13, 0.98) 0%, rgba(6, 10, 16, 0.99) 100%);
+  border-left: 1px solid rgba(90, 62, 43, 0.45);
+  box-shadow: -20px 0 60px rgba(0, 0, 0, 0.92);
+  color: var(--color-eclipse-ink);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  position: relative;
+  box-sizing: border-box;
+}
+
+/* 1. Drawer Header */
+.drawerHeader {
+  padding: 24px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(90, 62, 43, 0.35);
+  background: rgba(6, 10, 16, 0.6);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  backdrop-filter: blur(8px);
+}
+
+.eyebrowGroup {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.eyebrowBadge {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  padding: 3px 7px;
+  background: rgba(90, 62, 43, 0.45);
+  border: 1px solid rgba(213, 133, 31, 0.4);
+  color: var(--color-eclipse-gold);
+  border-radius: 2px;
+}
+
+.eyebrowText {
+  font-family: var(--font-sans);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: var(--color-eclipse-muted);
+  text-transform: uppercase;
+}
+
+.closeButton {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(14, 22, 32, 0.6);
+  border: 1px solid rgba(224, 232, 236, 0.2);
+  color: var(--color-eclipse-ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.closeButton:hover {
+  border-color: var(--color-eclipse-gold);
+  color: var(--color-eclipse-gold);
+  background: rgba(90, 62, 43, 0.3);
+  transform: rotate(90deg);
+}
+
+/* 2. Chapters Directory List */
+.chaptersNav {
+  display: flex;
+  flex-direction: column;
+  padding: 12px 0;
+}
+
+.chapterItem {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(90, 62, 43, 0.18);
+  border-left: 3px solid transparent;
+  padding: 18px 28px;
+  cursor: pointer;
+  text-decoration: none;
+  box-sizing: border-box;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.chapterTopRow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+}
+
+.chapterNumber {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  color: var(--color-accent-sage);
+  flex-shrink: 0;
+}
+
+.chapterTitle {
+  font-family: var(--font-display);
+  font-size: 19px;
+  font-weight: 500;
+  letter-spacing: 0.015em;
+  color: var(--color-eclipse-ink);
+  transition: color 0.2s ease;
+  flex-grow: 1;
+}
+
+.chapterArrow {
+  color: var(--color-eclipse-gold);
+  opacity: 0.45;
+  transition: all 0.25s ease;
+  flex-shrink: 0;
+}
+
+.chapterSubtitle {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 10px;
+  color: var(--color-eclipse-muted);
+  letter-spacing: 0.6px;
+  margin-top: 5px;
+  padding-left: 28px;
+  line-height: 1.4;
+  transition: color 0.2s ease;
+}
+
+.chapterItem:hover {
+  background: rgba(90, 62, 43, 0.22);
+  border-left-color: var(--color-eclipse-gold);
+}
+
+.chapterItem:hover .chapterTitle {
+  color: var(--color-eclipse-gold);
+}
+
+.chapterItem:hover .chapterSubtitle {
+  color: rgba(244, 217, 160, 0.85);
+}
+
+.chapterItem:hover .chapterArrow {
+  opacity: 1;
+  transform: translateX(4px);
+}
+
+/* 3. Curatorial Quick Actions */
+.actionsSection {
+  padding: 24px 28px;
+  border-top: 1px solid rgba(90, 62, 43, 0.35);
+  background: rgba(10, 16, 26, 0.45);
+}
+
+.actionPrompt {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: var(--color-eclipse-muted);
+  margin-bottom: 14px;
+}
+
+.actionsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.actionBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 11px 14px;
+  background: rgba(90, 62, 43, 0.25);
+  border: 1px solid rgba(90, 62, 43, 0.6);
+  color: var(--color-eclipse-ink);
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: all 0.25s ease;
+}
+
+.actionBtn:hover {
+  background: rgba(90, 62, 43, 0.45);
+  border-color: var(--color-eclipse-gold);
+  color: var(--color-eclipse-gold);
+}
+
+.actionBtnPrimary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 11px 14px;
+  background: linear-gradient(135deg, rgba(213, 133, 31, 0.85) 0%, rgba(90, 62, 43, 0.95) 100%);
+  border: 1px solid rgba(213, 133, 31, 0.9);
+  color: #FFFFFF;
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: all 0.25s ease;
+}
+
+.actionBtnPrimary:hover {
+  box-shadow: 0 0 16px rgba(213, 133, 31, 0.45);
+  transform: translateY(-1px);
+}
+
+.actionIcon {
+  flex-shrink: 0;
+}
+
+.actionMiniArrow {
+  opacity: 0.6;
+  margin-left: 2px;
+}
+
+/* 4. Drawer Footer */
+.drawerFooter {
+  margin-top: auto;
+  padding: 24px 28px;
+  border-top: 1px solid rgba(90, 62, 43, 0.3);
+  background: rgba(6, 10, 16, 0.7);
+}
+
+.curatorialQuote {
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-style: italic;
+  line-height: 1.6;
+  color: var(--color-eclipse-muted);
+  margin: 0 0 16px;
+}
+
+.footerMeta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: rgba(156, 169, 178, 0.6);
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.copyright {
+  color: var(--color-eclipse-gold);
+}
+
+@keyframes fadeInOverlay {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 480px) {
+  .menuDrawer {
+    width: 100vw;
+    max-width: 100vw;
+    border-left: none;
+  }
+
+  .drawerHeader {
+    padding: 18px 20px;
+  }
+
+  .chapterItem {
+    padding: 16px 20px;
+    min-height: 54px;
+  }
+
+  .chapterTitle {
+    font-size: 17px;
+  }
+
+  .chapterSubtitle {
+    font-size: 9.5px;
+    padding-left: 25px;
+    line-height: 1.35;
+  }
+
+  .actionsSection {
+    padding: 18px 20px;
+  }
+
+  .actionsGrid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .actionBtn,
+  .actionBtnPrimary {
+    padding: 12px 16px;
+    width: 100%;
+  }
+
+  .drawerFooter {
+    padding: 18px 20px;
+    padding-bottom: max(24px, env(safe-area-inset-bottom));
+  }
+}

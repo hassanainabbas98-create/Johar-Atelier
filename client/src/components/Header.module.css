@@ -1,0 +1,293 @@
+/* Eclipse HUD Topbar */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28px var(--pad-eclipse);
+  background: linear-gradient(180deg, rgba(6, 10, 16, 0.92) 0%, rgba(6, 10, 16, 0) 100%);
+  pointer-events: auto;
+  transition: background 0.3s cubic-bezier(0.22, 1, 0.36, 1), padding 0.3s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.3s;
+  box-sizing: border-box;
+}
+
+.scrolledHeader {
+  background: linear-gradient(180deg, rgba(31, 21, 14, 0.94) 0%, rgba(6, 10, 16, 0.94) 100%);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-bottom: 1px solid rgba(213, 133, 31, 0.2);
+  padding: 18px var(--pad-eclipse);
+}
+
+.inner {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+/* Identity Crest */
+.identity {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none;
+  color: var(--color-eclipse-ink);
+  cursor: pointer;
+}
+
+.identitySvg {
+  width: 38px;
+  height: 38px;
+  fill: none;
+  stroke: var(--color-eclipse-gold);
+  stroke-width: 1.2;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.identity:hover .identitySvg {
+  transform: rotate(45deg);
+}
+
+.identityText {
+  display: flex;
+  flex-direction: column;
+}
+
+.identityTitle {
+  font-family: var(--font-cinzel);
+  font-size: 20px;
+  letter-spacing: 6px;
+  font-weight: 500;
+  color: var(--color-eclipse-ink);
+  line-height: 1;
+}
+
+.identitySub {
+  font-family: var(--font-sans);
+  font-size: 7px;
+  letter-spacing: 2.8px;
+  margin-top: 5px;
+  color: var(--color-eclipse-gold);
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+/* Desktop Links */
+.toplinks {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  margin-right: auto;
+  margin-left: clamp(20px, 4vw, 70px);
+}
+
+.textLink {
+  background: transparent;
+  border: none;
+  color: var(--color-eclipse-muted);
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  position: relative;
+  cursor: pointer;
+  padding-bottom: 4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: color 0.25s ease;
+}
+
+.textLink:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--color-eclipse-gold);
+  transition: width 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.textLink:hover,
+.activeTextLink {
+  color: var(--color-eclipse-ink);
+}
+
+.textLink:hover:after,
+.activeTextLink:after {
+  width: 100%;
+}
+
+.arrowSub {
+  font-size: 11px;
+  color: var(--color-eclipse-gold);
+}
+
+/* Header Actions */
+.headerActions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.liveTag {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: var(--color-accent-sage);
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  white-space: nowrap;
+}
+
+.liveDot {
+  width: 6px;
+  height: 6px;
+  background: var(--color-accent-sage);
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(135, 169, 107, 0.85);
+  display: inline-block;
+  animation: liveGlow 2.2s infinite ease-in-out alternate;
+}
+
+.iconButton {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  flex-direction: column;
+  gap: 6px;
+  background: rgba(90, 62, 43, 0.25);
+  border: 1px solid rgba(213, 133, 31, 0.25);
+  cursor: pointer;
+  padding: 6px 7px;
+  border-radius: 2px;
+  transition: all 0.25s ease;
+}
+
+.iconButton span {
+  width: 22px;
+  height: 1.5px;
+  background: #d3d6d4;
+  transition: width 0.3s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.25s;
+}
+
+.iconButton span:last-child {
+  width: 14px;
+}
+
+.iconButton:hover {
+  background: rgba(90, 62, 43, 0.5);
+  border-color: var(--color-eclipse-gold);
+}
+
+.iconButton:hover span {
+  background: var(--color-eclipse-gold);
+}
+
+.iconButton:hover span:last-child {
+  width: 22px;
+}
+
+@keyframes liveGlow {
+  0% {
+    transform: scale(0.85);
+    opacity: 0.6;
+    box-shadow: 0 0 6px rgba(135, 169, 107, 0.5);
+  }
+  100% {
+    transform: scale(1.2);
+    opacity: 1;
+    box-shadow: 0 0 14px rgba(135, 169, 107, 0.95);
+  }
+}
+
+@media (max-width: 900px) {
+  .header {
+    padding: 16px var(--pad-eclipse);
+  }
+
+  .scrolledHeader {
+    padding: 12px var(--pad-eclipse);
+  }
+
+  .toplinks {
+    display: none;
+  }
+
+  .liveTag {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .header {
+    padding: 14px 16px;
+    max-width: 100vw;
+    box-sizing: border-box;
+  }
+
+  .scrolledHeader {
+    padding: 10px 16px;
+  }
+
+  .inner {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+}
+
+@media (max-width: 480px) {
+  .inner {
+    gap: 12px;
+  }
+
+  .identity {
+    gap: 10px;
+  }
+
+  .identitySvg {
+    width: 30px;
+    height: 30px;
+  }
+
+  .identityTitle {
+    font-size: 15px;
+    letter-spacing: 3px;
+  }
+
+  .identitySub {
+    font-size: 6px;
+    letter-spacing: 1.6px;
+    margin-top: 3px;
+  }
+
+  .headerActions {
+    gap: 8px;
+  }
+
+  .textLink {
+    font-size: 10px;
+    letter-spacing: 1.2px;
+    padding: 6px 4px;
+  }
+
+  .iconButton {
+    width: 36px;
+    height: 36px;
+    padding: 6px;
+  }
+}

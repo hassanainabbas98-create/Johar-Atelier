@@ -1,0 +1,404 @@
+/* Eclipse Field Archive & Curatorial Record Dialog */
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(4, 7, 12, 0.85);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.archiveDialog {
+  width: min(1380px, 95vw);
+  max-height: 90dvh;
+  background: radial-gradient(ellipse at 50% 0%, rgba(90, 62, 43, 0.35) 0%, #060a10 70%);
+  border: 1px solid rgba(90, 62, 43, 0.4);
+  padding: 55px 45px 35px;
+  color: var(--color-eclipse-ink);
+  position: relative;
+  overflow-y: auto;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.8);
+}
+
+.closeButton {
+  position: absolute;
+  top: 24px;
+  right: 28px;
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  border: 1px solid rgba(224, 232, 236, 0.2);
+  color: var(--color-eclipse-ink);
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: all 0.25s ease;
+}
+
+.closeButton:hover {
+  border-color: var(--color-eclipse-gold);
+  color: var(--color-eclipse-gold);
+  transform: rotate(90deg);
+}
+
+.archiveHeading {
+  margin-bottom: 32px;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-sans);
+  font-size: 8px;
+  font-weight: 600;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--color-eclipse-gold);
+}
+
+.archiveTitle {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 4.5vw, 64px);
+  font-weight: 400;
+  letter-spacing: -0.04em;
+  margin: 12px 0 8px;
+  color: var(--color-eclipse-ink);
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+}
+
+.countBadge {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--color-eclipse-gold);
+  letter-spacing: 1.5px;
+  vertical-align: top;
+}
+
+.archiveSubtitle {
+  color: var(--color-eclipse-muted);
+  font-family: var(--font-sans);
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  max-width: 600px;
+  margin: 0;
+}
+
+.archiveGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 28px 24px;
+  margin: 36px 0;
+}
+
+.archiveCard {
+  background: rgba(16, 13, 12, 0.7);
+  border: 1px solid rgba(90, 62, 43, 0.3);
+  padding: 0;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.3s, transform 0.3s, background-color 0.3s;
+  overflow: hidden;
+  position: relative;
+}
+
+.archiveCard:hover {
+  border-color: rgba(213, 133, 31, 0.5);
+  transform: translateY(-4px);
+  background: rgba(42, 28, 19, 0.65);
+}
+
+.thumbWrapper {
+  aspect-ratio: 4 / 3;
+  background: #090e15;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.thumbImg {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.archiveCard:hover .thumbImg {
+  transform: scale(1.04);
+}
+
+.cardCatNum {
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: 1.2px;
+  color: var(--color-accent-sage);
+  background: rgba(42, 28, 19, 0.9);
+  border: 1px solid rgba(135, 169, 107, 0.45);
+  padding: 4px 8px;
+  backdrop-filter: blur(4px);
+  z-index: 2;
+}
+
+.watermarkBadge {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  font-family: var(--font-cinzel), serif;
+  font-size: 8px;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: rgba(244, 217, 160, 0.9);
+  background: rgba(6, 10, 16, 0.72);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid rgba(213, 133, 31, 0.35);
+  padding: 2.5px 7px;
+  border-radius: 2px;
+  pointer-events: none;
+  user-select: none;
+  z-index: 5;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+  white-space: nowrap;
+}
+
+.cardBody {
+  padding: 18px 20px 20px;
+}
+
+.cardTitle {
+  font-family: var(--font-display);
+  font-size: 19px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--color-eclipse-ink);
+  margin: 0 0 6px;
+}
+
+.cardMeta {
+  font-family: var(--font-sans);
+  font-size: 8px;
+  color: var(--color-eclipse-muted);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.dialogFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(156, 169, 178, 0.7);
+  border-top: 1px solid rgba(224, 232, 236, 0.12);
+  padding-top: 20px;
+}
+
+/* Curatorial Record Dialog (Detail View) */
+.recordOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1010;
+  background: rgba(3, 5, 8, 0.92);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.recordDialog {
+  width: min(1120px, 94vw);
+  max-height: 88dvh;
+  background: #080d15;
+  border: 1px solid rgba(217, 175, 117, 0.35);
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 32px 100px rgba(0, 0, 0, 0.95);
+}
+
+.recordArt {
+  position: relative;
+  background: radial-gradient(ellipse at center, #1b2836, #060a10 75%);
+  min-height: 520px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+  overflow: hidden;
+}
+
+.recordArtworkImg {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.7);
+  position: relative;
+  z-index: 2;
+}
+
+.scanline {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(213, 133, 31, 0.04) 0px,
+    rgba(213, 133, 31, 0.04) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  pointer-events: none;
+  z-index: 3;
+}
+
+.recordCatBadge {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: var(--color-accent-sage);
+  background: rgba(42, 28, 19, 0.9);
+  border: 1px solid rgba(135, 169, 107, 0.45);
+  padding: 6px 12px;
+  z-index: 4;
+}
+
+.recordContent {
+  padding: 48px 38px 36px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  border-left: 1px solid rgba(224, 232, 236, 0.12);
+}
+
+.recordTitle {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 3.2vw, 42px);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+  color: var(--color-eclipse-ink);
+  margin: 14px 0 16px;
+}
+
+.recordDesc {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  line-height: 1.8;
+  color: var(--color-eclipse-muted);
+  margin: 0 0 24px;
+}
+
+.recordStats {
+  margin: 20px 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  border-top: 1px solid rgba(224, 232, 236, 0.12);
+  padding-top: 20px;
+}
+
+.statGroup dt {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--color-accent-sage);
+  margin-bottom: 5px;
+}
+
+.statGroup dd {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  margin: 0;
+  color: var(--color-eclipse-ink);
+  font-weight: 500;
+}
+
+.inquireInRecordBtn {
+  margin-top: 20px;
+  width: 100%;
+}
+
+.recordNavRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid rgba(224, 232, 236, 0.12);
+  padding-top: 20px;
+  margin-top: auto;
+}
+
+.navArrowBtn {
+  background: transparent;
+  border: 1px solid rgba(224, 232, 236, 0.2);
+  color: var(--color-eclipse-ink);
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+.navArrowBtn:hover:not(:disabled) {
+  border-color: var(--color-eclipse-gold);
+  color: var(--color-eclipse-gold);
+}
+
+.navArrowBtn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.recordCount {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: var(--color-eclipse-muted);
+}
+
+@media (max-width: 900px) {
+  .recordDialog {
+    grid-template-columns: 1fr;
+    max-height: 94dvh;
+    overflow-y: auto;
+  }
+
+  .recordArt {
+    min-height: 280px;
+    height: 40dvh;
+    padding: 16px;
+  }
+
+  .recordContent {
+    padding: 24px;
+    border-left: none;
+    border-top: 1px solid rgba(224, 232, 236, 0.12);
+  }
+}
