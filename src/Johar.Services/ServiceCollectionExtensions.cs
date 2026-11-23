@@ -8,6 +8,7 @@ public static class ServiceCollectionExtensions
 {
     public static IServiceCollection AddJoharServices(this IServiceCollection services)
     {
+        services.AddHttpContextAccessor();
         services.AddScoped<ICloudinaryService, CloudinaryService>();
         services.AddScoped<IAuthService, AuthService>();
         services.AddScoped<ICategoryService, CategoryService>();

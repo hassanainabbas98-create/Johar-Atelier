@@ -16,16 +16,19 @@ public class CloudinaryService : ICloudinaryService
     private readonly CloudinaryOptions _options;
     private readonly IWebHostEnvironment _env;
     private readonly ILogger<CloudinaryService> _logger;
+    private readonly IHttpContextAccessor? _httpContextAccessor;
     private readonly Cloudinary? _cloudinary;
 
     public CloudinaryService(
         IOptions<CloudinaryOptions> options,
         IWebHostEnvironment env,
-        ILogger<CloudinaryService> logger)
+        ILogger<CloudinaryService> logger,
+        IHttpContextAccessor? httpContextAccessor = null)
     {
         _options = options.Value;
         _env = env;
         _logger = logger;
+        _httpContextAccessor = httpContextAccessor;
 
         if (_options.IsConfigured)
         {
@@ -185,6 +188,11 @@ public class CloudinaryService : ICloudinaryService
             return originalUrl.Replace("/upload/", "/upload/c_limit,w_1800,q_auto,f_auto/");
         }
 
+        if (originalUrl.StartsWith("/uploads/"))
+        {
+            return ResolveLocalUrl(originalUrl);
+        }
+
         return originalUrl;
     }
 
@@ -197,6 +205,20 @@ public class CloudinaryService : ICloudinaryService
         if (originalUrl.Contains("res.cloudinary.com") && originalUrl.Contains("/upload/"))
         {
             return originalUrl.Replace("/upload/", "/upload/c_limit,w_600,q_auto,f_auto/");
+        }
+
+        if (originalUrl.StartsWith("/uploads/"))
+        {
+            var thumbUrl = originalUrl;
+            if (thumbUrl.Contains("/uploads/artworks/") && !thumbUrl.Contains("_thumb."))
+            {
+                var dotIdx = thumbUrl.LastIndexOf('.');
+                if (dotIdx != -1)
+                {
+                    thumbUrl = $"{thumbUrl.Substring(0, dotIdx)}_thumb{thumbUrl.Substring(dotIdx)}";
+                }
+            }
+            return ResolveLocalUrl(thumbUrl);
         }
 
         return originalUrl;
@@ -212,7 +234,27 @@ public class CloudinaryService : ICloudinaryService
             return originalUrl.Replace("/upload/", $"/upload/c_fill,g_face,w_{size},h_{size},q_auto,f_auto/");
         }
 
+        if (originalUrl.StartsWith("/uploads/"))
+        {
+            return ResolveLocalUrl(originalUrl);
+        }
+
         return originalUrl;
+    }
+
+    private string ResolveLocalUrl(string path)
+    {
+        var httpContext = _httpContextAccessor?.HttpContext;
+        if (httpContext != null && httpContext.Request != null)
+        {
+            var scheme = httpContext.Request.Headers["X-Forwarded-Proto"].FirstOrDefault() ?? httpContext.Request.Scheme;
+            var host = httpContext.Request.Headers["X-Forwarded-Host"].FirstOrDefault() ?? httpContext.Request.Host.Value;
+            if (!string.IsNullOrWhiteSpace(scheme) && !string.IsNullOrWhiteSpace(host))
+            {
+                return $"{scheme}://{host}{path}";
+            }
+        }
+        return $"https://johar-xdgx.onrender.com{path}";
     }
 
     private async Task<AtelierImageUploadResult> SaveLocalFallbackImageAsync(IFormFile file, string subFolder, bool isPortrait)
