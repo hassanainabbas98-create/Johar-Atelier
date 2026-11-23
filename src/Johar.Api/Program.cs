@@ -12,9 +12,17 @@ var builder = WebApplication.CreateBuilder(args);
 
 // 1. Database Context (Supports SQLite out of the box for free cloud hosting, or SQL Server)
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-if (string.IsNullOrWhiteSpace(connectionString) || connectionString.Contains(".db") || (connectionString.Contains("Data Source=") && !connectionString.Contains("Server=")))
+bool isLocalDb = !string.IsNullOrWhiteSpace(connectionString) && connectionString.Contains("(localdb)", StringComparison.OrdinalIgnoreCase);
+bool isNonWindows = !System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(System.Runtime.InteropServices.OSPlatform.Windows);
+
+if (string.IsNullOrWhiteSpace(connectionString) ||
+    (isLocalDb && isNonWindows) ||
+    connectionString.Contains(".db", StringComparison.OrdinalIgnoreCase) ||
+    (connectionString.Contains("Data Source=", StringComparison.OrdinalIgnoreCase) && !connectionString.Contains("Server=", StringComparison.OrdinalIgnoreCase)))
 {
-    var dbSource = string.IsNullOrWhiteSpace(connectionString) ? "Data Source=atelier.db" : connectionString;
+    var dbSource = (string.IsNullOrWhiteSpace(connectionString) || (isLocalDb && isNonWindows))
+        ? "Data Source=atelier.db"
+        : connectionString;
     builder.Services.AddDbContext<ApplicationDbContext>(options =>
         options.UseSqlite(dbSource));
 }

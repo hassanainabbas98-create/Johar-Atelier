@@ -24,7 +24,7 @@
 !.vscode/extensions.json
 
 # Production Credentials & Environment Secrets (NEVER COMMIT)
-**/appsettings.Production.json
+# **/appsettings.Production.json (included for cloud SQLite configuration)
 **/appsettings.*.local.json
 **/*.local.json
 **/*.secret.json
