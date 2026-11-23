@@ -108,17 +108,26 @@ export async function watermarkImageFile(
   });
 }
 
+const API_BASE = (import.meta.env.VITE_API_BASE_URL || '').trim();
+const BACKEND_ORIGIN = (API_BASE.startsWith('http://') || API_BASE.startsWith('https://'))
+  ? API_BASE.replace(/\/api\/?$/, '')
+  : '';
+
 /**
  * Ensures artwork URLs append cache-busting tokens for local uploads
  * so clients immediately receive freshly watermarked image binaries.
  */
 export function getWatermarkedImageUrl(url?: string | null): string {
   if (!url) return '';
-  if (url.includes('/uploads/')) {
-    const sep = url.includes('?') ? '&' : '?';
-    return `${url}${sep}wm=johar_v2`;
+  let fullUrl = url;
+  if (url.startsWith('/uploads/') && BACKEND_ORIGIN) {
+    fullUrl = `${BACKEND_ORIGIN}${url}`;
   }
-  return url;
+  if (fullUrl.includes('/uploads/')) {
+    const sep = fullUrl.includes('?') ? '&' : '?';
+    return `${fullUrl}${sep}wm=johar_v2`;
+  }
+  return fullUrl;
 }
 
 /**
@@ -133,8 +142,7 @@ export function getOptimizedImageUrl(url?: string | null, size: 'thumb' | 'full'
       const base = url.substring(0, dotIdx);
       const ext = url.substring(dotIdx);
       const thumbUrl = `${base}_thumb${ext}`;
-      const sep = thumbUrl.includes('?') ? '&' : '?';
-      return `${thumbUrl}${sep}wm=johar_v2`;
+      return getWatermarkedImageUrl(thumbUrl);
     }
   }
   return getWatermarkedImageUrl(url);

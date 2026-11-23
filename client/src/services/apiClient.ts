@@ -26,23 +26,26 @@ export class ApiClientError extends Error {
   }
 }
 
-const CONFIG_BASE_URL = (import.meta.env.VITE_API_BASE_URL || '/api').replace(/\/+$/, '');
+// Base API configuration (smartly normalizes with or without /api suffix)
+const rawBase = (import.meta.env.VITE_API_BASE_URL || '/api').trim().replace(/\/+$/, '');
+const CONFIG_BASE_URL = (rawBase.startsWith('http://') || rawBase.startsWith('https://')) && !rawBase.endsWith('/api')
+  ? `${rawBase}/api`
+  : rawBase;
 
 async function request<T>(endpoint: string, options: RequestInit = {}): Promise<T> {
   let url: string;
   if (endpoint.startsWith('http://') || endpoint.startsWith('https://')) {
     url = endpoint;
-  } else if (CONFIG_BASE_URL.startsWith('http://') || CONFIG_BASE_URL.startsWith('https://')) {
+  } else {
     const cleanEndpoint = endpoint.startsWith('/') ? endpoint : `/${endpoint}`;
-    if (CONFIG_BASE_URL.endsWith('/api') && cleanEndpoint.startsWith('/api/')) {
-      url = `${CONFIG_BASE_URL.slice(0, -4)}${cleanEndpoint}`;
+    if (cleanEndpoint.startsWith('/api/')) {
+      const originOnly = CONFIG_BASE_URL.endsWith('/api')
+        ? CONFIG_BASE_URL.slice(0, -4)
+        : CONFIG_BASE_URL;
+      url = `${originOnly}${cleanEndpoint}`;
     } else {
       url = `${CONFIG_BASE_URL}${cleanEndpoint}`;
     }
-  } else {
-    url = endpoint.startsWith('/api')
-      ? endpoint
-      : `${CONFIG_BASE_URL}${endpoint.startsWith('/') ? '' : '/'}${endpoint}`;
   }
 
   const headers = new Headers(options.headers || {});

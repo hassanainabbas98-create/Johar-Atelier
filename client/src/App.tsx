@@ -36,6 +36,8 @@ export default function App(): React.JSX.Element {
               <Route path="/" element={<PublicLayout />}>
                 <Route index element={<HomePage />} />
                 <Route path="gallery" element={<GalleryPage />} />
+                <Route path="works" element={<Navigate to="/gallery" replace />} />
+                <Route path="collection" element={<Navigate to="/gallery" replace />} />
                 <Route path="gallery/:slug" element={<ArtworkDetailPage />} />
                 <Route path="about" element={<AboutPage />} />
                 <Route path="commissions" element={<CommissionsPage />} />
