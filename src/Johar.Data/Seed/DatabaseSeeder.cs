@@ -113,11 +113,11 @@ public static class DatabaseSeeder
         {
             var effectiveEmail = !string.IsNullOrWhiteSpace(adminEmail)
                 ? adminEmail.Trim()
-                : (isDevelopment ? DefaultAdminEmail : null);
+                : DefaultAdminEmail;
 
             var effectivePassword = !string.IsNullOrWhiteSpace(adminPassword)
                 ? adminPassword.Trim()
-                : (isDevelopment ? DefaultAdminPassword : null);
+                : DefaultAdminPassword;
 
             if (!string.IsNullOrWhiteSpace(effectiveEmail) && !string.IsNullOrWhiteSpace(effectivePassword))
             {
