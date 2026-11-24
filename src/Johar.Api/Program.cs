@@ -185,18 +185,22 @@ else
     app.UseHttpsRedirection();
 }
 
+app.UseCors("SpaCorsPolicy");
+
 app.UseStaticFiles(new StaticFileOptions
 {
     OnPrepareResponse = ctx =>
     {
+        ctx.Context.Response.Headers.AccessControlAllowOrigin = "*";
+        ctx.Context.Response.Headers.AccessControlAllowMethods = "GET, OPTIONS";
+        ctx.Context.Response.Headers.AccessControlAllowHeaders = "*";
+
         if (ctx.Context.Request.Path.StartsWithSegments("/uploads"))
         {
-            ctx.Context.Response.Headers.CacheControl = "no-cache, must-revalidate";
+            ctx.Context.Response.Headers.CacheControl = "public, max-age=86400";
         }
     }
 });
-
-app.UseCors("SpaCorsPolicy");
 
 app.UseAuthentication();
 app.UseAuthorization();

@@ -45,6 +45,7 @@ pnpm-debug.log*
 # Raw source videos and heavy uncompressed footage
 Pictures/
 *.mp4
+!client/public/media/Animation_Video.mp4
 *.mov
 *.avi
 

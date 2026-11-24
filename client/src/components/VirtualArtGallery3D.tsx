@@ -993,6 +993,7 @@ export const VirtualArtGallery3D: React.FC<VirtualArtGallery3DProps> = ({
     // --- Mount ALL Artworks in 3D (No slicing!) ---
     const spots: ArtworkSpot[] = [];
     const textureLoader = new THREE.TextureLoader();
+    textureLoader.setCrossOrigin('anonymous');
     const placeholderTex = createArchivalCanvasPlaceholder();
 
     const outerGoldMat = new THREE.MeshStandardMaterial({
